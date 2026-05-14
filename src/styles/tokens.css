@@ -41,19 +41,19 @@
   --blue: oklch(64% 0.06 245);
   --blue-deep: oklch(50% 0.08 242);
   --blue-soft: oklch(82% 0.035 248);
-  --blue-bg: oklch(97.5% 0.018 245);
+  --blue-bg: oklch(98% 0.008 245);
 
   /* Magenta — ermutigen klingt mit dem Logo-"getreu" zusammen */
   --rose: oklch(56% 0.17 348);
   --rose-deep: oklch(46% 0.19 346);
   --rose-soft: oklch(76% 0.08 348);
-  --rose-bg: oklch(97% 0.022 348);
+  --rose-bg: oklch(98% 0.011 348);
 
   /* Antikgold / blasses Champagner — inspirieren */
   --saffron: oklch(72% 0.075 82);
   --saffron-deep: oklch(60% 0.095 78);
   --saffron-soft: oklch(84% 0.05 84);
-  --saffron-bg: oklch(97.5% 0.022 82);
+  --saffron-bg: oklch(97.8% 0.013 82);
 
   /* Magenta — der einzige gesättigte Anker, ausschließlich im Logo */
   --magenta: oklch(56% 0.17 348);
