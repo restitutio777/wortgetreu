@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Impressum" description="Impressum der Webseite wortgetreu.com">
+  <article class="legal measure">
+    <header>
+      <p class="legal-eyebrow sans">Rechtliches</p>
+      <h1 class="legal-title">Impressum</h1>
+    </header>
+    <div class="legal-body">
+      <h2>Anbieterin</h2>
+      <p>
+        Katharina Offenborn<br />
+        [Anschrift wird im Backend-Schritt eingetragen]
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: <a href="mailto:kontakt@wortgetreu.com">kontakt@wortgetreu.com</a>
+      </p>
+
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>Katharina Offenborn</p>
+
+      <p class="placeholder sans-sm">
+        Hinweis: Dieser Platzhalter wird beim nächsten Schritt durch die rechtskonforme Fassung ersetzt.
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding-block: var(--space-7) var(--space-9);
+  }
+  .legal-eyebrow {
+    color: var(--ink-faint);
+    margin-bottom: var(--space-4);
+  }
+  .legal-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    margin-bottom: var(--space-6);
+  }
+  .legal-body {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: var(--lh-prose);
+  }
+  .legal-body h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-style: italic;
+    font-weight: 500;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
+  }
+  .legal-body p {
+    margin-bottom: 1em;
+  }
+  .placeholder {
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: var(--space-4);
+    margin-top: var(--space-6);
+  }
+</style>

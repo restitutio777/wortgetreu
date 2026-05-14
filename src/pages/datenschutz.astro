@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Datenschutz" description="Datenschutzerklärung der Webseite wortgetreu.com">
+  <article class="legal measure">
+    <header>
+      <p class="legal-eyebrow sans">Rechtliches</p>
+      <h1 class="legal-title">Datenschutz</h1>
+    </header>
+    <div class="legal-body">
+      <p class="lead">
+        Diese Webseite verarbeitet keine personenbezogenen Daten zu Werbe- oder Tracking-Zwecken.
+        Es werden keine Cookies gesetzt und kein Web-Analytics eingesetzt.
+      </p>
+
+      <h2>Webfonts</h2>
+      <p>
+        Zur Schrift­darstellung werden EB Garamond und Inter Tight derzeit über Google Fonts geladen.
+        Beim ersten Besuch werden die Schriftdateien einmal nachgeladen. Vor dem Live-Gang wird auf
+        selbstgehostete Schriften umgestellt, sodass keine externe Verbindung mehr notwendig ist.
+      </p>
+
+      <h2>Server-Logs</h2>
+      <p>
+        Der Hosting-Anbieter erstellt anonymisierte Zugriffsstatistiken, die der Betriebssicherheit dienen.
+        Diese Logs werden nicht an Dritte weitergegeben und nach kurzer Zeit gelöscht.
+      </p>
+
+      <p class="placeholder sans-sm">
+        Hinweis: Dieser Platzhalter wird beim nächsten Schritt durch die rechtskonforme Fassung ersetzt.
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding-block: var(--space-7) var(--space-9);
+  }
+  .legal-eyebrow {
+    color: var(--ink-faint);
+    margin-bottom: var(--space-4);
+  }
+  .legal-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    margin-bottom: var(--space-6);
+  }
+  .legal-body {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: var(--lh-prose);
+  }
+  .legal-body h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-style: italic;
+    font-weight: 500;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
+  }
+  .legal-body p {
+    margin-bottom: 1em;
+  }
+  .legal-body .lead {
+    font-size: var(--text-lg);
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: var(--space-5);
+  }
+  .placeholder {
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: var(--space-4);
+    margin-top: var(--space-6);
+  }
+</style>

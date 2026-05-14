@@ -1,0 +1,115 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+interface Props {
+  text: CollectionEntry<'texte'>;
+}
+
+const { text } = Astro.props;
+const { Content } = await render(text);
+const form = text.data.form;
+---
+
+<div class:list={['text-body', `text-body--${form}`]}>
+  <Content />
+</div>
+
+<style is:global>
+  .text-body p {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    margin-block: 0;
+  }
+
+  /* ── Gedicht ──────────────────────────────────────────────────────── */
+  .text-body--gedicht {
+    font-family: var(--font-serif);
+    font-size: var(--text-poem);
+    line-height: var(--lh-poem);
+    text-align: center;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+
+  .text-body--gedicht p {
+    margin-bottom: var(--space-5);
+    text-wrap: pretty;
+    hyphens: none;
+  }
+
+  .text-body--gedicht p:last-child {
+    margin-bottom: 0;
+  }
+
+  .text-body--gedicht br {
+    content: '';
+    margin-top: 0.15em;
+  }
+
+  /* ── Prosa-Formen ─────────────────────────────────────────────────── */
+  .text-body--essay,
+  .text-body--artikel,
+  .text-body--geschichte {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: var(--lh-prose);
+  }
+
+  .text-body--essay p,
+  .text-body--artikel p,
+  .text-body--geschichte p {
+    margin-bottom: 1em;
+    text-wrap: pretty;
+    hyphens: auto;
+  }
+
+  /* Artikel-Lead: erstes <p> beginnt häufig mit <strong>…</strong> als
+     redaktionelle Vorbemerkung. Wir setzen es etwas größer und kursiv. */
+  .text-body--artikel > p:first-of-type strong:first-child,
+  .text-body--artikel > p:first-of-type:has(> strong:only-child) {
+    display: block;
+  }
+  .text-body--artikel > p:first-of-type {
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+    line-height: 1.5;
+  }
+  .text-body--artikel > p:first-of-type strong {
+    font-weight: 400;
+  }
+
+  /* Zwischentitel in Artikeln */
+  .text-body--artikel h2,
+  .text-body--essay h2,
+  .text-body--geschichte h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    line-height: var(--lh-tight);
+    text-align: left;
+  }
+
+  /* "Erschienen in…"-Hinweis am Ende eines Artikels: erkenne anhand des
+     letzten Paragraphen, der oft kursiv die Quellenangabe enthält. */
+  .text-body--artikel > p:last-child:where(:not(:only-child)) {
+    margin-top: var(--space-7);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: var(--space-4);
+    line-height: 1.5;
+  }
+
+  .text-body em {
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Buch — Leuchtspuren"
+  description="Leuchtspuren — Eigenwege in die Zukunft. Das Buch von Katharina Offenborn, erschienen 2020 bei tredition."
+>
+  <article class="buch measure">
+    <header class="buch-header">
+      <p class="buch-eyebrow sans">Das Buch · 2020</p>
+      <h1 class="buch-title">
+        <span class="buch-main">Leuchtspuren</span>
+        <span class="buch-sub">Eigenwege in die Zukunft</span>
+      </h1>
+      <p class="buch-author">von Katharina&nbsp;Offenborn</p>
+    </header>
+
+    <div class="buch-body">
+      <p class="lead">
+        Eine Sammlung von Texten, die zur Suche nach eigenen Wegen ermutigen. Gerade dort, wo das Gewohnte nicht mehr trägt.
+      </p>
+
+      <p>
+        Erschienen 2020 im tredition-Verlag. Im Buchhandel und beim Verlag erhältlich.
+      </p>
+
+      <div class="buch-actions">
+        <a class="buch-cta" href="https://tredition.de/autoren/katharina-offenborn-31976/" target="_blank" rel="noreferrer">
+          Beim Verlag bestellen
+          <span aria-hidden="true">→</span>
+        </a>
+        <span class="buch-or sans-sm">oder im Buchhandel deines Vertrauens</span>
+      </div>
+
+      <hr class="rule" />
+
+      <h2>Über das Buch</h2>
+      <p>
+        <em>Leuchtspuren</em> versammelt Reflexionen, Geschichten und Anstöße aus zwei Jahrzehnten. Texte, die nicht beantworten, sondern offenhalten. Sie suchen nach dem, was unter dem Sichtbaren wirkt: am Schwellenmoment, am Übergang, in der stillen Geste.
+      </p>
+
+      <p>
+        Die Autorin schreibt aus einer anthroposophisch grundierten Aufmerksamkeit, ohne je belehrend zu werden. Statt Antworten gibt es Spuren, auf denen jede:r Leser:in eigene Schritte gehen kann.
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .buch {
+    padding-block: var(--space-7) var(--space-9);
+  }
+
+  .buch-header {
+    text-align: center;
+    margin-bottom: var(--space-7);
+  }
+
+  .buch-eyebrow {
+    color: var(--ink-faint);
+    margin-bottom: var(--space-5);
+  }
+
+  .buch-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: var(--tracking-display);
+    color: var(--ink);
+    margin-bottom: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .buch-main {
+    font-size: var(--text-display);
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+  }
+
+  .buch-sub {
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  @media (min-width: 720px) {
+    .buch-sub {
+      font-size: var(--text-xl);
+    }
+  }
+
+  .buch-author {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: var(--text-base);
+  }
+
+  .buch-body {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: var(--lh-prose);
+    color: var(--ink);
+  }
+
+  .buch-body p {
+    margin-bottom: 1em;
+  }
+
+  .buch-body .lead {
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: var(--space-5);
+  }
+
+  .buch-body h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    line-height: var(--lh-tight);
+  }
+
+  .buch-actions {
+    margin-block: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .buch-cta {
+    border: 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--ink);
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--ink);
+    transition: color var(--transition-fast), gap var(--transition-base);
+  }
+
+  .buch-cta:hover {
+    color: var(--accent);
+    gap: 0.75em;
+    border-bottom-color: var(--accent);
+  }
+
+  .buch-or {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: var(--font-serif);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+</style>

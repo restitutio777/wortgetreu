@@ -1,0 +1,130 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  { href: '/werk', label: 'Werk' },
+  { href: '/buch', label: 'Buch' },
+  { href: '/ueber', label: 'Über' },
+];
+
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+---
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="wordmark" aria-label="Wortgetreu — Startseite">
+      <span class="wordmark-text">Wort<span class="wordmark-warm">getreu</span></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[isActive(item.href) && 'is-active']}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .site-header-inner {
+    width: 100%;
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .wordmark {
+    border: 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    line-height: 1;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35em;
+  }
+
+  .wordmark::before {
+    content: '✻';
+    color: var(--accent-soft);
+    font-style: normal;
+    font-size: 0.65em;
+    line-height: 1;
+    transform: translateY(-2px);
+  }
+
+  .wordmark-warm {
+    color: var(--accent);
+    font-style: inherit;
+  }
+
+  .wordmark:hover {
+    color: var(--ink);
+  }
+  .wordmark:hover .wordmark-warm {
+    color: var(--accent-deep);
+  }
+  .wordmark:hover::before {
+    color: var(--accent);
+  }
+
+  .site-nav ul {
+    list-style: none;
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: baseline;
+  }
+
+  .site-nav a {
+    border: 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-loose);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    padding-block: var(--space-1);
+    position: relative;
+  }
+
+  .site-nav a:hover {
+    color: var(--accent);
+  }
+
+  .site-nav a.is-active {
+    color: var(--accent-deep);
+  }
+
+  .site-nav a.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--accent);
+  }
+</style>

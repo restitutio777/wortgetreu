@@ -1,0 +1,130 @@
+---
+import { themaInfo, formInfo } from '../content.config';
+import type { Text } from '../lib/content';
+
+interface Props {
+  text: Text;
+}
+
+const { text } = Astro.props;
+const { title, form, themen, datum, jahr, veroeffentlichtIn, veroeffentlichtAm } = text.data;
+const formLabel = formInfo[form].label;
+const datumAnzeige = datum || (jahr ? String(jahr) : undefined);
+---
+
+<header class="text-header" data-form={form}>
+  <p class="text-eyebrow sans">
+    <span>{formLabel}</span>
+    {
+      themen.length > 0 && (
+        <>
+          <span class="dot" aria-hidden="true">·</span>
+          <span class="themen">
+            {themen.map((t, i) => (
+              <>
+                {i > 0 && <span class="sep" aria-hidden="true">·</span>}
+                <a href={`/werk?thema=${t}`}>{themaInfo[t].label}</a>
+              </>
+            ))}
+          </span>
+        </>
+      )
+    }
+  </p>
+  <h1 class="text-title">{title}</h1>
+  {
+    veroeffentlichtIn && (
+      <p class="text-publication sans-sm">
+        Erschienen in {veroeffentlichtIn}
+        {veroeffentlichtAm && <>, {veroeffentlichtAm}</>}
+      </p>
+    )
+  }
+  {
+    !veroeffentlichtIn && datumAnzeige && (
+      <p class="text-date sans-sm">
+        <time>{datumAnzeige}</time>
+      </p>
+    )
+  }
+</header>
+
+<style>
+  .text-header {
+    margin-block: var(--space-7) var(--space-7);
+    text-align: center;
+  }
+
+  .text-header[data-form='essay'],
+  .text-header[data-form='artikel'],
+  .text-header[data-form='geschichte'] {
+    text-align: left;
+  }
+
+  .text-eyebrow {
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  .text-header[data-form='essay'] .text-eyebrow,
+  .text-header[data-form='artikel'] .text-eyebrow,
+  .text-header[data-form='geschichte'] .text-eyebrow {
+    justify-content: flex-start;
+  }
+
+  .text-eyebrow .dot {
+    color: var(--ink-faint);
+  }
+
+  .themen {
+    display: inline-flex;
+    gap: 0.5em;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .themen a {
+    border: 0;
+    color: var(--ink-soft);
+    transition: color var(--transition-fast);
+  }
+
+  .themen a:hover {
+    color: var(--ink);
+  }
+
+  .themen .sep {
+    color: var(--ink-faint);
+  }
+
+  .text-title {
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-display);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .text-header[data-form='gedicht'] .text-title {
+    font-style: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .text-publication,
+  .text-date {
+    margin-top: var(--space-4);
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: var(--font-serif);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+</style>

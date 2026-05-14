@@ -1,0 +1,632 @@
+---
+import Base from '../layouts/Base.astro';
+import { getAllTexte, formatDatum } from '../lib/content';
+import { formInfo } from '../content.config';
+
+const alle = await getAllTexte();
+const byId = new Map(alle.map((t) => [t.id, t]));
+
+const stillerMomentIds = ['das-unsagbare', 'schutzengel', 'mitleid'];
+const schwellenIds = ['krankenhaus', 'schule', 'kathedrale'];
+const neueste = alle
+  .filter((t) => t.data.jahr && t.data.jahr >= 2024)
+  .slice(0, 3);
+
+const stillerMoment = stillerMomentIds.map((id) => byId.get(id)).filter(Boolean);
+const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
+---
+
+<Base
+  title="wortgetreu — Werk von Katharina Offenborn"
+  description="Lyrik, Essays, Artikel und Geschichten von Katharina Offenborn. Ein Werk seit 1999, gewidmet dem aufmerksamen Wort."
+>
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-welcome">Schön, dass du hierher gefunden hast.</p>
+
+      <h1 class="hero-title">
+        Lass dich<br />
+        <em class="verb verb-touch">berühren</em>,
+        <em class="verb verb-grow">ermutigen</em>,<br />
+        <em class="verb verb-spark">inspirieren</em>.
+      </h1>
+
+      <p class="hero-subtitle">
+        Lyrik, Essays, Artikel und Geschichten von Katharina&nbsp;Offenborn.
+      </p>
+
+      <p class="hero-services sans-sm">
+        Auch im Auftrag <span class="dot" aria-hidden="true">·</span>
+        Lektorat <span class="dot" aria-hidden="true">·</span>
+        Übersetzung <span class="dot" aria-hidden="true">·</span>
+        Bucherstellung <span class="dot" aria-hidden="true">·</span>
+        Biografien <span class="dot" aria-hidden="true">·</span>
+        Chroniken
+      </p>
+    </div>
+  </section>
+
+  <p class="book-note">
+    <svg class="book-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 5.5C12 4.4 12.9 3.5 14 3.5h6c.5 0 1 .5 1 1v14c0 .5-.5 1-1 1h-6c-1.1 0-2 .9-2 2"/>
+      <path d="M12 5.5C12 4.4 11.1 3.5 10 3.5H4c-.5 0-1 .5-1 1v14c0 .5.5 1 1 1h6c1.1 0 2 .9 2 2"/>
+    </svg>
+    <span>Im Buch: <em>Leuchtspuren. Eigenwege in die Zukunft.</em></span>
+    <a
+      href="https://tredition.de/autoren/katharina-offenborn-31976/"
+      target="_blank"
+      rel="noreferrer"
+      class="book-link"
+    >Bei tredition <span aria-hidden="true">↗</span></a>
+  </p>
+
+  <section class="threshold">
+    <header class="threshold-intro measure">
+      <p class="threshold-section-label sans">Drei Eingänge</p>
+      <h2 class="threshold-section-title">Wo möchtest du beginnen?</h2>
+    </header>
+
+    <ol class="threshold-list measure-wide">
+      <li class="threshold-block" data-variant="warm">
+        <header class="threshold-header">
+          <p class="threshold-eyebrow sans">
+            <span class="numeral">I</span>
+            <span>Stille</span>
+          </p>
+          <h3 class="threshold-title">Für einen stillen Moment</h3>
+          <p class="threshold-lead">
+            Drei kurze Gedichte, die nicht eilen. Setz dich, atme einmal aus, lies in der Reihenfolge, oder springe.
+          </p>
+        </header>
+        <ol class="thread-list">
+          {
+            stillerMoment.map((t, i) => (
+              t && (
+                <li>
+                  <a href={`/werk/${t.id}`}>
+                    <span class="thread-num">{String(i + 1).padStart(2, '0')}</span>
+                    <span class="thread-body">
+                      <span class="thread-title">{t.data.title}</span>
+                      <span class="thread-preview">{t.data.erstzeile ?? formInfo[t.data.form].label}</span>
+                    </span>
+                  </a>
+                </li>
+              )
+            ))
+          }
+        </ol>
+      </li>
+
+      <li class="threshold-block" data-variant="moss">
+        <header class="threshold-header">
+          <p class="threshold-eyebrow sans">
+            <span class="numeral">II</span>
+            <span>Lesepfad</span>
+          </p>
+          <h3 class="threshold-title">Schwellen­phänomene</h3>
+          <p class="threshold-lead">
+            Drei Artikel, 2008 für die Wochenschrift <em>Das Goetheanum</em> geschrieben. Über Orte, an denen sich der Mensch begegnet.
+          </p>
+        </header>
+        <ol class="thread-list">
+          {
+            schwellen.map((t, i) => (
+              t && (
+                <li>
+                  <a href={`/werk/${t.id}`}>
+                    <span class="thread-num">{String(i + 1).padStart(2, '0')}</span>
+                    <span class="thread-body">
+                      <span class="thread-title">{t.data.title}</span>
+                      <span class="thread-preview">
+                        {t.data.veroeffentlichtAm ?? formInfo[t.data.form].label}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              )
+            ))
+          }
+        </ol>
+      </li>
+
+      <li class="threshold-block" data-variant="ink">
+        <header class="threshold-header">
+          <p class="threshold-eyebrow sans">
+            <span class="numeral">III</span>
+            <span>Frisch</span>
+          </p>
+          <h3 class="threshold-title">Neu hinzugekommen</h3>
+          <p class="threshold-lead">
+            Die jüngsten Texte. Was zuletzt geschrieben wurde.
+          </p>
+        </header>
+        <ol class="thread-list">
+          {
+            neueste.map((t, i) => (
+              <li>
+                <a href={`/werk/${t.id}`}>
+                  <span class="thread-num">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="thread-body">
+                    <span class="thread-title">{t.data.title}</span>
+                    <span class="thread-preview">
+                      {formInfo[t.data.form].label}
+                      <span class="dot" aria-hidden="true">·</span>
+                      {formatDatum(t)}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </li>
+    </ol>
+
+    <p class="threshold-foot sans-sm">
+      <a href="/werk">Zum gesamten Werk <span aria-hidden="true">→</span></a>
+    </p>
+  </section>
+
+  <section class="quote-block">
+    <blockquote>
+      <p class="quote-text">
+        Dort, wo uns Poeten die Worte einfallen,<br />
+        aufs Wesentliche verdichtet,<br />
+        jedes an seinem Platz,<br />
+        an jenem geheimen Ort jenseits aller Vernunft,<br />
+        lausche ich mit offenem Herzen.
+      </p>
+      <footer class="quote-attr">
+        <a href="/werk/magie-der-poesie">aus <cite>Magie der Poesie</cite></a>
+      </footer>
+    </blockquote>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-inline: var(--page-gutter);
+    padding-block: var(--space-7) var(--space-7);
+    position: relative;
+    background:
+      radial-gradient(ellipse 90% 100% at 10% 0%, var(--accent-bg), transparent 55%),
+      radial-gradient(ellipse 80% 90% at 95% 110%, var(--warm-bg), transparent 50%);
+    background-blend-mode: normal;
+  }
+
+  @media (min-width: 720px) {
+    .hero {
+      padding-block: var(--space-9) var(--space-9);
+    }
+  }
+
+  .hero-inner {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-welcome {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-5);
+    text-wrap: balance;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--text-display);
+    line-height: 1.05;
+    letter-spacing: var(--tracking-display);
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+    text-wrap: balance;
+  }
+
+  .hero-title .verb {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-title .verb-touch {
+    color: var(--touch-deep);
+  }
+
+  .hero-title .verb-grow {
+    color: var(--grow-deep);
+  }
+
+  .hero-title .verb-spark {
+    color: var(--spark-deep);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    font-size: var(--text-base);
+    line-height: 1.55;
+    max-width: 32rem;
+    margin-inline: auto;
+    text-wrap: pretty;
+  }
+
+  .hero-services {
+    margin-top: var(--space-4);
+    color: var(--ink-faint);
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  .hero-services .dot {
+    color: var(--accent-soft);
+  }
+
+  /* Buch-Hinweis — eine Zeile, kein Kasten */
+  .book-note {
+    margin-block: var(--space-7) 0;
+    padding-inline: var(--page-gutter);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.6em;
+    flex-wrap: wrap;
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .book-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+    transform: translateY(0.18em);
+  }
+
+  .book-note em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .book-link {
+    border: 0;
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-soft);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+  }
+
+  .book-link:hover {
+    color: var(--accent-deep);
+    text-decoration-color: var(--accent);
+  }
+
+  /* ── Threshold-Sektion ─────────────────────────────────────────────── */
+  .threshold {
+    padding-block: var(--space-8) var(--space-7);
+    padding-inline: var(--page-gutter);
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .threshold-intro {
+    text-align: center;
+    margin-bottom: var(--space-7);
+  }
+
+  .threshold-section-label {
+    color: var(--moss);
+    margin-bottom: var(--space-3);
+  }
+
+  .threshold-section-title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--text-xl);
+    color: var(--ink);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.2;
+  }
+
+  .threshold-list {
+    list-style: none;
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  @media (min-width: 980px) {
+    .threshold-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+  }
+
+  .threshold-block {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: var(--space-6);
+    background: var(--paper-sunk);
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid var(--rule);
+  }
+
+  @media (min-width: 980px) {
+    .threshold-block {
+      padding: var(--space-5);
+    }
+  }
+
+  .threshold-block[data-variant="warm"] {
+    background: linear-gradient(180deg, var(--accent-bg) 0%, var(--paper-sunk) 60%);
+    border-color: oklch(85% 0.025 50);
+  }
+
+  .threshold-block[data-variant="moss"] {
+    background: linear-gradient(180deg, var(--moss-bg) 0%, var(--paper-sunk) 60%);
+    border-color: oklch(83% 0.02 150);
+  }
+
+  .threshold-block[data-variant="ink"] {
+    background: linear-gradient(180deg, var(--warm-bg) 0%, var(--paper-sunk) 60%);
+    border-color: oklch(85% 0.025 75);
+  }
+
+  .threshold-header {
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .threshold-eyebrow {
+    color: var(--ink-soft);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: baseline;
+    gap: 0.7em;
+  }
+
+  .threshold-eyebrow .numeral {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5em;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 400;
+  }
+
+  .threshold-block[data-variant="warm"] .threshold-eyebrow .numeral {
+    color: var(--accent);
+  }
+
+  .threshold-block[data-variant="moss"] .threshold-eyebrow .numeral {
+    color: var(--moss);
+  }
+
+  .threshold-block[data-variant="ink"] .threshold-eyebrow .numeral {
+    color: var(--warm-deep);
+  }
+
+  .threshold-block[data-variant="ink"] .thread-num { color: var(--warm-soft); }
+  .threshold-block[data-variant="ink"] .thread-list a:hover .thread-title { color: var(--warm-deep); }
+
+  .threshold-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--ink);
+    text-wrap: balance;
+    margin-bottom: var(--space-3);
+    letter-spacing: var(--tracking-display);
+  }
+
+  .threshold-lead {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-base);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+
+  .thread-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-self: end;
+  }
+
+  .thread-list li {
+    border-bottom: 1px dashed var(--rule-strong);
+  }
+
+  .thread-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .thread-list a {
+    display: grid;
+    grid-template-columns: 1.6em 1fr;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    padding-inline: var(--space-2);
+    border: 0;
+    align-items: baseline;
+    transition: background var(--transition-fast), padding var(--transition-base);
+    margin-inline: calc(var(--space-2) * -1);
+    border-radius: 3px;
+  }
+
+  .thread-list a:hover {
+    background: var(--paper);
+    padding-inline: var(--space-3);
+  }
+
+  .thread-num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-base);
+    font-feature-settings: 'tnum' 1;
+    color: var(--ink-faint);
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .threshold-block[data-variant="warm"] .thread-num { color: var(--accent-soft); }
+  .threshold-block[data-variant="moss"] .thread-num { color: var(--moss-soft); }
+
+  .thread-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+    min-height: 2.6em;
+  }
+
+  .thread-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    color: var(--ink);
+    transition: color var(--transition-fast);
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .threshold-block[data-variant="warm"] .thread-list a:hover .thread-title {
+    color: var(--accent);
+  }
+  .threshold-block[data-variant="moss"] .thread-list a:hover .thread-title {
+    color: var(--moss);
+  }
+  .threshold-block[data-variant="ink"] .thread-list a:hover .thread-title {
+    color: var(--accent);
+  }
+
+  .thread-preview {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .thread-preview .dot {
+    color: var(--ink-faint);
+    margin-inline: 0.4em;
+    font-style: normal;
+  }
+
+  .threshold-foot {
+    margin-top: var(--space-7);
+    text-align: center;
+  }
+
+  .threshold-foot a {
+    border: 0;
+    color: var(--moss);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-loose);
+    text-transform: uppercase;
+    padding: 0.6em 1.4em;
+    transition: color var(--transition-fast), background var(--transition-fast);
+    border: 1px solid var(--moss-soft);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .threshold-foot a:hover {
+    color: var(--paper);
+    background: var(--moss);
+    border-color: var(--moss);
+  }
+
+  /* ── Quote ────────────────────────────────────────────────────────── */
+  .quote-block {
+    padding-block: var(--space-8) var(--space-9);
+    padding-inline: var(--page-gutter);
+    text-align: center;
+    background: linear-gradient(180deg, transparent, var(--moss-bg) 30%, var(--moss-bg) 70%, transparent);
+    margin-top: var(--space-6);
+  }
+
+  .quote-block blockquote {
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+
+  .quote-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: var(--space-5);
+    text-wrap: balance;
+    position: relative;
+  }
+
+  .quote-text::before {
+    content: '"';
+    position: absolute;
+    left: -0.6em;
+    top: -0.3em;
+    font-size: 3em;
+    color: var(--moss-soft);
+    line-height: 1;
+    font-style: normal;
+    pointer-events: none;
+  }
+
+  @media (min-width: 720px) {
+    .quote-text {
+      font-size: var(--text-xl);
+      line-height: 1.4;
+    }
+  }
+
+  .quote-attr {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-loose);
+    text-transform: uppercase;
+    color: var(--moss);
+  }
+
+  .quote-attr a {
+    border: 0;
+    color: inherit;
+    transition: color var(--transition-fast);
+  }
+
+  .quote-attr a:hover {
+    color: var(--ink);
+  }
+
+  .quote-attr cite {
+    font-style: normal;
+    color: var(--ink);
+  }
+</style>

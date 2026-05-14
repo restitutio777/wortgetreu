@@ -1,0 +1,459 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getAllTexte, formatDatum, getJahr } from '../../lib/content';
+import { themaInfo, formInfo } from '../../content.config';
+
+const texte = await getAllTexte();
+
+const formen: Array<keyof typeof formInfo> = ['gedicht', 'essay', 'artikel', 'geschichte'];
+const themen = Object.keys(themaInfo) as Array<keyof typeof themaInfo>;
+
+const counts = {
+  alle: texte.length,
+  ...Object.fromEntries(formen.map((f) => [f, texte.filter((t) => t.data.form === f).length])),
+};
+const themaCounts = Object.fromEntries(
+  themen.map((th) => [th, texte.filter((t) => t.data.themen.includes(th)).length])
+);
+---
+
+<Base title="Werk" description="Lyrik, Essays, Artikel und Geschichten von Katharina Offenborn — das gesammelte Werk seit 1999.">
+  <section class="werk-intro measure">
+    <h1 class="werk-title">Werk</h1>
+    <p class="werk-lead">
+      {texte.length} Texte aus 25 Jahren. Filter nach Form oder Thema, oder einfach den Blick wandern lassen.
+    </p>
+  </section>
+
+  <details class="filter-shell measure-wide" aria-label="Texte filtern">
+    <summary class="filter-summary">
+      <span class="filter-summary-label sans-sm">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M6 12h12M10 18h4" />
+        </svg>
+        Filter
+      </span>
+      <span class="filter-summary-state sans-sm" data-state>alle Formen, alle Themen</span>
+      <span class="filter-summary-toggle sans-sm">
+        <span class="toggle-open">Öffnen</span>
+        <span class="toggle-close">Schließen</span>
+      </span>
+    </summary>
+
+    <div class="filter-content">
+      <div class="filter-group">
+        <span class="filter-label sans">Form</span>
+        <ul class="filter-list">
+          <li><button class="filter-chip is-active" data-filter="form" data-value="alle">Alle <span class="count">{counts.alle}</span></button></li>
+          {formen.map((f) => (
+            <li>
+              <button class="filter-chip" data-filter="form" data-value={f}>
+                {formInfo[f].pluralLabel} <span class="count">{counts[f]}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label sans">Thema</span>
+        <ul class="filter-list">
+          <li><button class="filter-chip is-active" data-filter="thema" data-value="alle">Alle</button></li>
+          {themen.map((th) => (
+            <li>
+              <button class="filter-chip" data-filter="thema" data-value={th}>
+                {themaInfo[th].label} <span class="count">{themaCounts[th]}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <section class="werk-list-wrap measure" aria-live="polite">
+    <p class="result-meta sans-sm" id="result-meta"></p>
+    <ol class="werk-list">
+      {texte.map((t) => {
+        const datum = formatDatum(t);
+        const jahr = getJahr(t);
+        return (
+          <li
+            class="werk-item"
+            data-form={t.data.form}
+            data-themen={t.data.themen.join(' ')}
+            data-jahr={jahr ?? ''}
+          >
+            <a href={`/werk/${t.id}`}>
+              <p class="item-eyebrow sans">
+                {formInfo[t.data.form].label}
+                {datum && (
+                  <>
+                    <span aria-hidden="true">·</span>
+                    <time>{datum}</time>
+                  </>
+                )}
+              </p>
+              <h2 class="item-title">{t.data.title}</h2>
+              {t.data.erstzeile && (
+                <p class="item-preview">{t.data.erstzeile}</p>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+    <p class="empty sans-sm" hidden id="empty-state">Keine Texte in dieser Auswahl. <button class="reset-btn" type="button">Filter zurücksetzen</button></p>
+  </section>
+</Base>
+
+<style>
+  .werk-intro {
+    padding-block: var(--space-6) var(--space-5);
+    text-align: center;
+  }
+
+  .werk-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-display);
+    margin-bottom: var(--space-3);
+  }
+
+  .werk-lead {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: 1.45;
+    max-width: 28rem;
+    margin-inline: auto;
+    text-wrap: pretty;
+  }
+
+  /* Filter — einklappbar via <details> */
+  .filter-shell {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .filter-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding-block: var(--space-3);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: border-color var(--transition-fast);
+  }
+
+  .filter-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .filter-summary:hover {
+    border-color: var(--rule-strong);
+  }
+
+  .filter-summary-label {
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-shrink: 0;
+  }
+
+  .filter-summary-label svg {
+    color: var(--accent);
+  }
+
+  .filter-summary-state {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    text-transform: none;
+    letter-spacing: 0;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .filter-summary-toggle {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .filter-shell[open] .toggle-open { display: none; }
+  .filter-shell:not([open]) .toggle-close { display: none; }
+
+  .filter-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .filter-group {
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--space-5);
+    }
+  }
+
+  .filter-label {
+    color: var(--ink-faint);
+    flex-shrink: 0;
+    min-width: 4rem;
+  }
+
+  .filter-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .filter-chip {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-loose);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0.35rem 0.7rem;
+    border: 0;
+    background: transparent;
+    border-radius: 4px;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .filter-chip:hover {
+    color: var(--ink);
+    background: var(--paper-sunk);
+  }
+
+  .filter-chip.is-active {
+    color: var(--accent-deep);
+    background: var(--accent-bg);
+  }
+
+  .filter-chip .count {
+    font-feature-settings: 'tnum' 1;
+    opacity: 0.55;
+    margin-left: 0.35em;
+  }
+
+  .filter-chip.is-active .count {
+    opacity: 0.7;
+  }
+
+  .result-meta {
+    padding-block: var(--space-3);
+    color: var(--ink-faint);
+    min-height: 1.5em;
+  }
+
+  .werk-list-wrap {
+    padding-block: var(--space-4) var(--space-7);
+  }
+
+  .werk-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .werk-item {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .werk-item[hidden] {
+    display: none;
+  }
+
+  .werk-item a {
+    display: block;
+    padding-block: var(--space-5);
+    border: 0;
+    color: inherit;
+    transition: background var(--transition-fast);
+  }
+
+  .werk-item a:hover {
+    background: var(--paper-sunk);
+  }
+
+  .item-eyebrow {
+    display: flex;
+    gap: 0.6em;
+    align-items: baseline;
+    color: var(--ink-faint);
+    margin-bottom: var(--space-2);
+  }
+
+  .item-eyebrow span {
+    color: var(--ink-faint);
+  }
+
+  .item-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: var(--tracking-display);
+    margin-bottom: var(--space-2);
+    line-height: var(--lh-tight);
+    transition: color var(--transition-fast);
+  }
+
+  .werk-item a:hover .item-title {
+    color: var(--accent);
+  }
+
+  .item-preview {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: var(--text-base);
+    line-height: 1.4;
+    max-width: 30rem;
+  }
+
+  .empty {
+    padding-block: var(--space-7);
+    text-align: center;
+    color: var(--ink-soft);
+  }
+
+  .reset-btn {
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 3px;
+  }
+</style>
+
+<script>
+  type Filter = 'form' | 'thema';
+  const state: Record<Filter, string> = { form: 'alle', thema: 'alle' };
+
+  function parseURL() {
+    const url = new URL(window.location.href);
+    const form = url.searchParams.get('form');
+    const thema = url.searchParams.get('thema');
+    if (form) state.form = form;
+    if (thema) state.thema = thema;
+  }
+
+  function syncChips() {
+    document.querySelectorAll<HTMLButtonElement>('.filter-chip').forEach((chip) => {
+      const f = chip.dataset.filter as Filter;
+      const v = chip.dataset.value as string;
+      chip.classList.toggle('is-active', state[f] === v);
+      chip.setAttribute('aria-pressed', state[f] === v ? 'true' : 'false');
+    });
+  }
+
+  const themaLabels: Record<string, string> = {
+    'schwelle-wandlung': 'Schwelle & Wandlung',
+    'licht-stille': 'Licht & Stille',
+    'natur-erde': 'Natur & Erde',
+    'liebe-verbundenheit': 'Liebe & Verbundenheit',
+    'geist-freiheit': 'Geist & Freiheit',
+    'alltag-bewusstsein': 'Alltag & Bewusstsein',
+  };
+  const formLabels: Record<string, string> = {
+    gedicht: 'Gedichte',
+    essay: 'Essays',
+    artikel: 'Artikel',
+    geschichte: 'Geschichten',
+  };
+
+  function applyFilter() {
+    const items = document.querySelectorAll<HTMLLIElement>('.werk-item');
+    let count = 0;
+    items.forEach((li) => {
+      const form = li.dataset.form ?? '';
+      const themen = (li.dataset.themen ?? '').split(' ').filter(Boolean);
+      const matchForm = state.form === 'alle' || state.form === form;
+      const matchThema = state.thema === 'alle' || themen.includes(state.thema);
+      const visible = matchForm && matchThema;
+      li.hidden = !visible;
+      if (visible) count++;
+    });
+
+    const meta = document.getElementById('result-meta');
+    const empty = document.getElementById('empty-state');
+    if (meta) {
+      if (state.form === 'alle' && state.thema === 'alle') {
+        meta.textContent = `${count} Texte`;
+      } else {
+        meta.textContent = `${count} ${count === 1 ? 'Text' : 'Texte'} in dieser Auswahl`;
+      }
+    }
+    if (empty) empty.hidden = count > 0;
+
+    const stateEl = document.querySelector<HTMLElement>('[data-state]');
+    if (stateEl) {
+      const formText = state.form === 'alle' ? 'alle Formen' : formLabels[state.form] ?? state.form;
+      const themaText = state.thema === 'alle' ? 'alle Themen' : themaLabels[state.thema] ?? state.thema;
+      stateEl.textContent = `${formText}, ${themaText}`;
+    }
+  }
+
+  function updateURL() {
+    const url = new URL(window.location.href);
+    if (state.form === 'alle') url.searchParams.delete('form');
+    else url.searchParams.set('form', state.form);
+    if (state.thema === 'alle') url.searchParams.delete('thema');
+    else url.searchParams.set('thema', state.thema);
+    history.replaceState(null, '', url);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.filter-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const f = chip.dataset.filter as Filter;
+      const v = chip.dataset.value as string;
+      state[f] = v;
+      syncChips();
+      applyFilter();
+      updateURL();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.reset-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      state.form = 'alle';
+      state.thema = 'alle';
+      syncChips();
+      applyFilter();
+      updateURL();
+    });
+  });
+
+  parseURL();
+  syncChips();
+  applyFilter();
+</script>
