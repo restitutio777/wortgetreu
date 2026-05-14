@@ -154,12 +154,13 @@ main {
 /* Asterismus — leise vertikale Atemzeichen zwischen Sektionen */
 .asterism {
   text-align: center;
-  color: var(--ink-faint);
+  color: var(--violet);
   font-family: var(--font-serif);
   font-size: var(--text-lg);
   letter-spacing: 0.6em;
   margin-block: var(--space-8);
   user-select: none;
+  opacity: 0.7;
 }
 
 .asterism::before {

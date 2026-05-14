@@ -9,10 +9,11 @@
      gefasst von einem leise gewärmten Papier und sepia-warmer Tinte.
      Jeder Verb-Akzent hat eine eigene Hintergrund-Lasur,
      mit der eine Karte oder Sektion atmen darf. */
-  --paper: oklch(97.5% 0.008 75);
-  --paper-sunk: oklch(95% 0.012 70);
-  --paper-warm: oklch(93% 0.02 65);
-  --paper-deep: oklch(90% 0.025 60);
+  /* Papier: Pergament-warm, eine Spur Körper im Cremeton */
+  --paper: oklch(97% 0.012 75);
+  --paper-sunk: oklch(94.5% 0.015 70);
+  --paper-warm: oklch(92.5% 0.022 65);
+  --paper-deep: oklch(89.5% 0.028 60);
 
   /* Tinte: warm-tiefes Sepia statt kalter Tinten-Indigo */
   --ink: oklch(24% 0.025 55);
@@ -26,24 +27,33 @@
      und ein einziger warmer Lichtpunkt (blasses Gold).
      Weniger Pigment, mehr Atmosphäre. */
 
-  /* Eis-Blau / Kornblume — kühle Hauptstimme */
-  --blue: oklch(64% 0.07 240);
-  --blue-deep: oklch(52% 0.085 238);
-  --blue-soft: oklch(78% 0.045 240);
-  --blue-bg: oklch(95% 0.015 240);
+  /* Azurit-Blau — Goethes „Blau erscheint, wo Dunkles durchs Helle gesehen wird".
+     Leuchtend, kontemplativ, nicht informativ-kühl. */
+  --blue: oklch(62% 0.095 235);
+  --blue-deep: oklch(48% 0.12 232);
+  --blue-soft: oklch(76% 0.055 238);
+  --blue-bg: oklch(95% 0.022 238);
 
-  /* Heide / weicher Mauve — Lavendel mit einer Spur Wärme,
-     Richtung Heidekraut statt reines Lila */
-  --rose: oklch(64% 0.085 325);
-  --rose-deep: oklch(52% 0.105 322);
-  --rose-soft: oklch(78% 0.05 325);
-  --rose-bg: oklch(95% 0.022 325);
+  /* Anthroposophische Liebes-Rose — von Heide nach Pfirsichblüte,
+     warm-rosé, der menschliche Pol */
+  --rose: oklch(64% 0.095 350);
+  --rose-deep: oklch(52% 0.115 348);
+  --rose-soft: oklch(78% 0.055 350);
+  --rose-bg: oklch(95% 0.028 350);
 
   /* Honig-Gold — sonnenhaft warm, jenseits von Yellow-Kitsch */
   --saffron: oklch(68% 0.135 68);
   --saffron-deep: oklch(56% 0.155 62);
   --saffron-soft: oklch(82% 0.075 70);
   --saffron-bg: oklch(94% 0.032 72);
+
+  /* Schwellen-Violett — der vierte, sehr seltene Akzent.
+     Steht für Geist-berührt-Erde, das Unsagbare, die Mystik.
+     Nur an Asterismen, Schwell-Markern, der Quote-Attribution. */
+  --violet: oklch(46% 0.13 290);
+  --violet-deep: oklch(36% 0.13 290);
+  --violet-soft: oklch(72% 0.075 290);
+  --violet-bg: oklch(95% 0.022 290);
 
   /* Magnolie — sehr sparsam, für sekundäre Markierungen */
   --magenta: oklch(60% 0.095 355);
@@ -65,10 +75,9 @@
   --spark-soft: var(--saffron-soft);
   --spark-bg: var(--saffron-bg);
 
-  /* Hero-Verb-Töne — atmosphärischer als die System-Akzente,
-     aber noch lesbar als Display-Text */
-  --verb-touch: oklch(55% 0.105 240);
-  --verb-grow: oklch(56% 0.13 322);
+  /* Hero-Verb-Töne — Display-Text, mit Pigment-Klarheit aber atmosphärisch */
+  --verb-touch: oklch(52% 0.14 232);
+  --verb-grow: oklch(54% 0.135 348);
   --verb-spark: oklch(60% 0.16 65);
 
   /* System-Akzent ist jetzt die warme Antikrose */
