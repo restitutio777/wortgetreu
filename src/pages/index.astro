@@ -57,7 +57,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     </header>
 
     <ol class="threshold-list measure-wide">
-      <li class="threshold-block" data-variant="warm">
+      <li class="threshold-block" data-variant="touch">
         <header class="threshold-header">
           <p class="threshold-eyebrow sans">
             <span class="numeral">I</span>
@@ -87,7 +87,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
         </ol>
       </li>
 
-      <li class="threshold-block" data-variant="moss">
+      <li class="threshold-block" data-variant="grow">
         <header class="threshold-header">
           <p class="threshold-eyebrow sans">
             <span class="numeral">II</span>
@@ -119,7 +119,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
         </ol>
       </li>
 
-      <li class="threshold-block" data-variant="ink">
+      <li class="threshold-block" data-variant="spark">
         <header class="threshold-header">
           <p class="threshold-eyebrow sans">
             <span class="numeral">III</span>
@@ -196,9 +196,9 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     padding-block: var(--space-7) var(--space-7);
     position: relative;
     background:
-      radial-gradient(ellipse 90% 100% at 10% 0%, var(--accent-bg), transparent 55%),
-      radial-gradient(ellipse 80% 90% at 95% 110%, var(--warm-bg), transparent 50%);
-    background-blend-mode: normal;
+      radial-gradient(ellipse 75% 80% at 5% -5%, var(--touch-bg), transparent 55%),
+      radial-gradient(ellipse 70% 70% at 50% 110%, var(--grow-bg), transparent 50%),
+      radial-gradient(ellipse 75% 80% at 105% -5%, var(--spark-bg), transparent 55%);
   }
 
   @media (min-width: 720px) {
@@ -417,19 +417,19 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     }
   }
 
-  .threshold-block[data-variant="warm"] {
-    background: linear-gradient(180deg, var(--accent-bg) 0%, var(--paper-sunk) 60%);
-    border-color: oklch(85% 0.025 50);
+  .threshold-block[data-variant="touch"] {
+    background: linear-gradient(180deg, var(--touch-bg) 0%, var(--paper-sunk) 60%);
+    border-color: oklch(85% 0.02 248);
   }
 
-  .threshold-block[data-variant="moss"] {
-    background: linear-gradient(180deg, var(--moss-bg) 0%, var(--paper-sunk) 60%);
-    border-color: oklch(83% 0.02 150);
+  .threshold-block[data-variant="grow"] {
+    background: linear-gradient(180deg, var(--grow-bg) 0%, var(--paper-sunk) 60%);
+    border-color: oklch(85% 0.025 20);
   }
 
-  .threshold-block[data-variant="ink"] {
-    background: linear-gradient(180deg, var(--warm-bg) 0%, var(--paper-sunk) 60%);
-    border-color: oklch(85% 0.025 75);
+  .threshold-block[data-variant="spark"] {
+    background: linear-gradient(180deg, var(--spark-bg) 0%, var(--paper-sunk) 60%);
+    border-color: oklch(85% 0.035 78);
   }
 
   .threshold-header {
@@ -456,20 +456,20 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     font-weight: 400;
   }
 
-  .threshold-block[data-variant="warm"] .threshold-eyebrow .numeral {
-    color: var(--accent);
+  .threshold-block[data-variant="touch"] .threshold-eyebrow .numeral {
+    color: var(--touch-deep);
   }
 
-  .threshold-block[data-variant="moss"] .threshold-eyebrow .numeral {
-    color: var(--moss);
+  .threshold-block[data-variant="grow"] .threshold-eyebrow .numeral {
+    color: var(--grow-deep);
   }
 
-  .threshold-block[data-variant="ink"] .threshold-eyebrow .numeral {
-    color: var(--warm-deep);
+  .threshold-block[data-variant="spark"] .threshold-eyebrow .numeral {
+    color: var(--spark-deep);
   }
 
-  .threshold-block[data-variant="ink"] .thread-num { color: var(--warm-soft); }
-  .threshold-block[data-variant="ink"] .thread-list a:hover .thread-title { color: var(--warm-deep); }
+  .threshold-block[data-variant="spark"] .thread-num { color: var(--spark-soft); }
+  .threshold-block[data-variant="spark"] .thread-list a:hover .thread-title { color: var(--spark-deep); }
 
   .threshold-title {
     font-family: var(--font-serif);
@@ -535,8 +535,8 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     text-align: center;
   }
 
-  .threshold-block[data-variant="warm"] .thread-num { color: var(--accent-soft); }
-  .threshold-block[data-variant="moss"] .thread-num { color: var(--moss-soft); }
+  .threshold-block[data-variant="touch"] .thread-num { color: var(--touch-soft); }
+  .threshold-block[data-variant="grow"] .thread-num { color: var(--grow-soft); }
 
   .thread-body {
     display: flex;
@@ -554,14 +554,14 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     font-weight: 500;
   }
 
-  .threshold-block[data-variant="warm"] .thread-list a:hover .thread-title {
-    color: var(--accent);
+  .threshold-block[data-variant="touch"] .thread-list a:hover .thread-title {
+    color: var(--touch-deep);
   }
-  .threshold-block[data-variant="moss"] .thread-list a:hover .thread-title {
-    color: var(--moss);
+  .threshold-block[data-variant="grow"] .thread-list a:hover .thread-title {
+    color: var(--grow-deep);
   }
-  .threshold-block[data-variant="ink"] .thread-list a:hover .thread-title {
-    color: var(--accent);
+  .threshold-block[data-variant="spark"] .thread-list a:hover .thread-title {
+    color: var(--spark-deep);
   }
 
   .thread-preview {
@@ -615,7 +615,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     padding-block: var(--space-8) var(--space-9);
     padding-inline: var(--page-gutter);
     text-align: center;
-    background: linear-gradient(180deg, transparent, var(--moss-bg) 30%, var(--moss-bg) 70%, transparent);
+    background: linear-gradient(180deg, transparent, var(--grow-bg) 35%, var(--grow-bg) 65%, transparent);
     margin-top: var(--space-6);
   }
 
