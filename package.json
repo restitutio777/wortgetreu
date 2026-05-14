@@ -13,5 +13,8 @@
   "dependencies": {
     "astro": "^5.0.0",
     "remark-breaks": "^4.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^54.0.0"
   }
 }
