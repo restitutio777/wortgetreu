@@ -7,6 +7,8 @@ datum: 18.09.2024
 jahr: 2024
 sortKey: "2024-09-18"
 erstzeile: Wohlwollen wogt in Wellen
+bild: /gedicht-bilder/frage-an-dich.jpg
+bildAlt: "Kraehe"
 ---
 
 Wohlwollen wogt in Wellen

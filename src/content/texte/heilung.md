@@ -8,6 +8,8 @@ datum: 5.12.2024
 jahr: 2024
 sortKey: "2024-12-05"
 erstzeile: Verbunden mit ALLEM, WAS IST,
+bild: /gedicht-bilder/heilung.jpg
+bildAlt: "Doppelregenbogen"
 ---
 
 Verbunden mit ALLEM, WAS IST,

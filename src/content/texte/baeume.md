@@ -7,6 +7,8 @@ datum: 2002
 jahr: 2002
 sortKey: "2002-00-00"
 erstzeile: "Bäume - Höhe -"
+bild: /gedicht-bilder/baeume.jpg
+bildAlt: "Baeume 2"
 ---
 
 Bäume - Höhe -

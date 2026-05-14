@@ -7,6 +7,8 @@ datum: 2. Februar 2025
 jahr: 2025
 sortKey: "2025-02-02"
 erstzeile: Das Übertönende
+bild: /gedicht-bilder/lichtmess-2.jpg
+bildAlt: "Licht von oben"
 ---
 
 Das Übertönende

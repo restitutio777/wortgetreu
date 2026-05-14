@@ -8,6 +8,8 @@ datum: 1996
 jahr: 1996
 sortKey: "1996-00-00"
 erstzeile: Wütend klatscht Regen gegen das Fenster,
+bild: /gedicht-bilder/traenen.jpg
+bildAlt: "Regentropfen"
 ---
 
 Wütend klatscht Regen gegen das Fenster,

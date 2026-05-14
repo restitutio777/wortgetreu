@@ -7,6 +7,8 @@ datum: 5. Mai 2025
 jahr: 2025
 sortKey: "2025-05-05"
 erstzeile: Es gibt Tage, die nicht halten,
+bild: /gedicht-bilder/was-wirklich-zaehlt.jpg
+bildAlt: "Baumschatten"
 ---
 
 Es gibt Tage, die nicht halten,

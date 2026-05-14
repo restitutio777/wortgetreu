@@ -7,6 +7,8 @@ datum: 24.04.2025
 jahr: 2025
 sortKey: "2025-04-24"
 erstzeile: Ich liebe die Freiheit, deine genauso wie meine —
+bild: /gedicht-bilder/freiheit.jpg
+bildAlt: "Freiheit"
 ---
 
 Ich liebe die Freiheit, deine genauso wie meine —

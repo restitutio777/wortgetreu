@@ -7,6 +7,8 @@ datum: März 2025
 jahr: 2025
 sortKey: "2025-03-00"
 erstzeile: Frei will ich sein,
+bild: /gedicht-bilder/fuereinander.jpg
+bildAlt: "Bienenglueck"
 ---
 
 Frei will ich sein,

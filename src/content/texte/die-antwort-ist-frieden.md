@@ -7,6 +7,8 @@ datum: 20.12.2024
 jahr: 2024
 sortKey: "2024-12-20"
 erstzeile: Du fragst, was uns rettet vor Krieg und Zwietracht,
+bild: /gedicht-bilder/die-antwort-ist-frieden.jpg
+bildAlt: "20250310 144539"
 ---
 
 Du fragst, was uns rettet vor Krieg und Zwietracht,

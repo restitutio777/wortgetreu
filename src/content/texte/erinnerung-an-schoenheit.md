@@ -8,6 +8,8 @@ datum: 14.02.2024
 jahr: 2024
 sortKey: "2024-02-14"
 erstzeile: Und dann erinnern uns Blumen
+bild: /gedicht-bilder/erinnerung-an-schoenheit.jpg
+bildAlt: "Rotkaeppchen"
 ---
 
 Und dann erinnern uns Blumen

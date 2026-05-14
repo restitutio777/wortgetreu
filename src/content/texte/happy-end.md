@@ -5,6 +5,8 @@ themen:
   - schwelle-wandlung
   - alltag-bewusstsein
 erstzeile: Ach, wenn man gleich zu Anfang wüsst’,
+bild: /gedicht-bilder/happy-end.jpg
+bildAlt: "Obstbluete"
 ---
 
 Ach, wenn man gleich zu Anfang wüsst’,

@@ -8,6 +8,8 @@ datum: 2003
 jahr: 2003
 sortKey: "2003-00-00"
 erstzeile: Leise knisternd zerfielen die Flammen,
+bild: /gedicht-bilder/herbststaub.jpg
+bildAlt: "Herbstfarben"
 ---
 
 Leise knisternd zerfielen die Flammen,

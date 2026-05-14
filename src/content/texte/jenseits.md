@@ -4,6 +4,8 @@ form: gedicht
 themen:
   - schwelle-wandlung
 erstzeile: Wie ward mein Herz so groß und weit,
+bild: /gedicht-bilder/jenseits.jpg
+bildAlt: "Jenseits"
 ---
 
 Wie ward mein Herz so groß und weit,

@@ -4,6 +4,8 @@ form: gedicht
 themen:
   - alltag-bewusstsein
 erstzeile: Falle aus allen Rollen, Mensch,
+bild: /gedicht-bilder/glueck.jpg
+bildAlt: "Glueck"
 ---
 
 Falle aus allen Rollen, Mensch,

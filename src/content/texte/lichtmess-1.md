@@ -7,6 +7,8 @@ datum: 2. Februar 2025
 jahr: 2025
 sortKey: "2025-02-02"
 erstzeile: "Immer gehen wir entgegen -"
+bild: /gedicht-bilder/lichtmess-1.jpg
+bildAlt: "Dem Licht entgegen"
 ---
 
 Immer gehen wir entgegen -

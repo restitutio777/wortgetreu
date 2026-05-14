@@ -4,6 +4,8 @@ form: gedicht
 themen:
   - alltag-bewusstsein
 erstzeile: Du bist, die ICH BIN,
+bild: /gedicht-bilder/unterwegs.jpg
+bildAlt: "Wolkenspiegel"
 ---
 
 Du bist, die ICH BIN,

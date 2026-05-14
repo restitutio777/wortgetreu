@@ -62,6 +62,8 @@ const texte = defineCollection({
     intro: z.string().optional(),
     erstzeile: z.string().optional(),
     sortKey: z.string().optional(),
+    bild: z.string().optional(),
+    bildAlt: z.string().optional(),
   }),
 });
 

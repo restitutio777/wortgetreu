@@ -7,6 +7,8 @@ datum: 19.04.2025
 jahr: 2025
 sortKey: "2025-04-19"
 erstzeile: Wenn rein gar nichts mehr trägt,
+bild: /gedicht-bilder/beweggruende.jpg
+bildAlt: "Tropfenschoen"
 ---
 
 Wenn rein gar nichts mehr trägt,

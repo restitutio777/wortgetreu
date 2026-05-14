@@ -8,6 +8,8 @@ datum: April 2024
 jahr: 2024
 sortKey: "2024-04-00"
 erstzeile: Mag sein, dass uns die meisten Menschen
+bild: /gedicht-bilder/schutzengel.jpg
+bildAlt: "Zum Licht"
 ---
 
 Mag sein, dass uns die meisten Menschen

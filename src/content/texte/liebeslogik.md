@@ -7,6 +7,8 @@ datum: 4. Nov. 2024
 jahr: 2024
 sortKey: "2024-11-04"
 erstzeile: Ich möchte dir geben,
+bild: /gedicht-bilder/liebeslogik.jpg
+bildAlt: "Rosa Rausch"
 ---
 
 Ich möchte dir geben,

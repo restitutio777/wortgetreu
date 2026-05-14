@@ -7,6 +7,8 @@ datum: 1999
 jahr: 1999
 sortKey: "1999-00-00"
 erstzeile: Aus der Asche
+bild: /gedicht-bilder/transformation.jpg
+bildAlt: "Phoenix"
 ---
 
 Aus der Asche

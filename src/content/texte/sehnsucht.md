@@ -7,6 +7,8 @@ datum: 1982
 jahr: 1982
 sortKey: "1982-00-00"
 erstzeile: Die Weite des Himmels,
+bild: /gedicht-bilder/sehnsucht.jpg
+bildAlt: "Freistehender Baum"
 ---
 
 Die Weite des Himmels,

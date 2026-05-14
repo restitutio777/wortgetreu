@@ -7,6 +7,8 @@ datum: 8.12.2024
 jahr: 2024
 sortKey: "2024-12-08"
 erstzeile: Statt Kritik zu üben,
+bild: /gedicht-bilder/selbstheilung.jpg
+bildAlt: "Kretaschoen"
 ---
 
 Statt Kritik zu üben,

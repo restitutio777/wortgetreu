@@ -8,6 +8,8 @@ datum: 06.04.2025
 jahr: 2025
 sortKey: "2025-04-06"
 erstzeile: ICH BIN von unscheinbarer Form,
+bild: /gedicht-bilder/das-samenkorn.jpg
+bildAlt: "Eichenkeim"
 ---
 
 ICH BIN von unscheinbarer Form,

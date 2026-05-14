@@ -7,6 +7,8 @@ datum: 1996
 jahr: 1996
 sortKey: "1996-00-00"
 erstzeile: Leichten Wortes
+bild: /gedicht-bilder/inspiration.jpg
+bildAlt: "Bienenfluegel"
 ---
 
 Leichten Wortes

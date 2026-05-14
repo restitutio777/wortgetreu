@@ -8,6 +8,8 @@ datum: 12.02.2025
 jahr: 2025
 sortKey: "2025-02-12"
 erstzeile: HIER
+bild: /gedicht-bilder/erloesung.jpg
+bildAlt: "Engel ueber uns"
 ---
 
 HIER

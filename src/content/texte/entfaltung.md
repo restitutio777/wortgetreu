@@ -7,6 +7,8 @@ datum: 1992
 jahr: 1992
 sortKey: "1992-00-00"
 erstzeile: Ich werde sein, die ich bin
+bild: /gedicht-bilder/entfaltung.jpg
+bildAlt: "Milder Schein"
 ---
 
 Ich werde sein, die ich bin

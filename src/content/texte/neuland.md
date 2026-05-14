@@ -7,6 +7,8 @@ datum: 24. Feb. 2025
 jahr: 2025
 sortKey: "2025-02-24"
 erstzeile: Im Geiste Zukunft erblühen lassen,
+bild: /gedicht-bilder/neuland.jpg
+bildAlt: "Neuland"
 ---
 
 Im Geiste Zukunft erblühen lassen,

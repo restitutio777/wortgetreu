@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TextHeader from '../../components/TextHeader.astro';
 import TextBody from '../../components/TextBody.astro';
+import ReadingTools from '../../components/ReadingTools.astro';
 import { byDateDesc } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -20,11 +21,27 @@ export async function getStaticPaths() {
 const { entry, prev, next } = Astro.props;
 const desc = entry.data.erstzeile ?? `${entry.data.title} — ${entry.data.form}`;
 const measureClass = entry.data.form === 'gedicht' ? 'measure measure-poem' : 'measure';
+const showImage = entry.data.form === 'gedicht' && entry.data.bild;
 ---
 
 <Base title={entry.data.title} description={desc}>
   <article class={measureClass}>
+    <ReadingTools title={entry.data.title} />
     <TextHeader text={entry} />
+    {
+      showImage && (
+        <figure class="poem-figure">
+          <img
+            src={entry.data.bild}
+            alt={entry.data.bildAlt ?? entry.data.title}
+            loading="lazy"
+            decoding="async"
+            width="640"
+            height="480"
+          />
+        </figure>
+      )
+    }
     <TextBody text={entry} />
   </article>
 
@@ -59,7 +76,34 @@ const measureClass = entry.data.form === 'gedicht' ? 'measure measure-poem' : 'm
 
 <style>
   article {
-    padding-block: var(--space-6) var(--space-7);
+    padding-block: var(--space-4) var(--space-7);
+  }
+
+  .poem-figure {
+    margin: 0 auto var(--space-6);
+    max-width: 22rem;
+    text-align: center;
+  }
+
+  .poem-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    filter: saturate(0.85);
+    box-shadow:
+      0 1px 0 var(--rule),
+      0 8px 20px -12px oklch(40% 0.05 50 / 0.25);
+    transition: filter var(--transition-base);
+  }
+
+  .poem-figure img:hover {
+    filter: saturate(1);
+  }
+
+  @media (min-width: 980px) {
+    .poem-figure {
+      max-width: 18rem;
+    }
   }
 
   .text-nav {

@@ -33,19 +33,25 @@
   --blue-soft: oklch(74% 0.05 245);
   --blue-bg: oklch(95% 0.02 245);
 
-  /* Magnolie / weiches Magenta — der Funke */
+  /* Magnolie / weiches Magenta — Sekundärakzent, sparsam */
   --magenta: oklch(60% 0.095 355);
   --magenta-deep: oklch(48% 0.115 358);
   --magenta-soft: oklch(74% 0.06 358);
   --magenta-bg: oklch(95% 0.022 355);
+
+  /* Safran / Honiggelb — der Funke, frisch und inspirierend */
+  --saffron: oklch(72% 0.13 80);
+  --saffron-deep: oklch(58% 0.16 75);
+  --saffron-soft: oklch(82% 0.08 82);
+  --saffron-bg: oklch(95% 0.04 85);
 
   /* Verb-Aliasse — semantische Namen für die drei Versprechen */
   --touch: var(--blue);
   --touch-deep: var(--blue-deep);
   --grow: var(--rose);
   --grow-deep: var(--rose-deep);
-  --spark: var(--magenta);
-  --spark-deep: var(--magenta-deep);
+  --spark: var(--saffron);
+  --spark-deep: var(--saffron-deep);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
@@ -128,6 +134,29 @@
     --text-2xl: 3.25rem;      /* 52 */
     --text-display: 4.5rem;   /* 72 */
   }
+}
+
+/* Lese-Größen — über ReadingTools auf <html> gesetzt */
+html[data-textsize='lg'] .text-body--gedicht,
+html[data-textsize='lg'] .text-body--essay,
+html[data-textsize='lg'] .text-body--artikel,
+html[data-textsize='lg'] .text-body--geschichte {
+  font-size: calc(var(--text-base) * 1.15);
+}
+
+html[data-textsize='lg'] .text-body--gedicht {
+  font-size: calc(var(--text-poem) * 1.15);
+}
+
+html[data-textsize='xl'] .text-body--gedicht,
+html[data-textsize='xl'] .text-body--essay,
+html[data-textsize='xl'] .text-body--artikel,
+html[data-textsize='xl'] .text-body--geschichte {
+  font-size: calc(var(--text-base) * 1.3);
+}
+
+html[data-textsize='xl'] .text-body--gedicht {
+  font-size: calc(var(--text-poem) * 1.3);
 }
 
 @media (min-width: 1200px) {

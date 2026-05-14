@@ -8,6 +8,8 @@ datum: 05.10.1997
 jahr: 1997
 sortKey: "1997-10-05"
 erstzeile: Dem Leid klaglos innewohnen,
+bild: /gedicht-bilder/einsicht.jpg
+bildAlt: "Rosa Engel"
 ---
 
 Dem Leid klaglos innewohnen,

@@ -8,6 +8,8 @@ datum: 1996
 jahr: 1996
 sortKey: "1996-00-00"
 erstzeile: Ich warf dir mein Leid vor die Füße,
+bild: /gedicht-bilder/mitleid.jpg
+bildAlt: "Mandelbluete und weisse Berge"
 ---
 
 Ich warf dir mein Leid vor die Füße,

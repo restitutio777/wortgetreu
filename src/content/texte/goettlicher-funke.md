@@ -8,6 +8,8 @@ datum: 24. Oktober 2024
 jahr: 2024
 sortKey: "2024-10-24"
 erstzeile: DU BIST, wo ich bin,
+bild: /gedicht-bilder/goettlicher-funke.jpg
+bildAlt: "Mandelbluete und weisse Berge"
 ---
 
 DU BIST, wo ich bin,

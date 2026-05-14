@@ -7,6 +7,8 @@ datum: 11.10.2024
 jahr: 2024
 sortKey: "2024-10-11"
 erstzeile: Sie entspringen der großen Ruhe,
+bild: /gedicht-bilder/machtworte.jpg
+bildAlt: "20250408 144329"
 ---
 
 Sie entspringen der großen Ruhe,

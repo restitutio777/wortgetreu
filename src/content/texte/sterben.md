@@ -7,6 +7,8 @@ datum: 17. April 2025
 jahr: 2025
 sortKey: "2025-04-17"
 erstzeile: "Zu sterben bedeutet, den Raum zu verlassen:"
+bild: /gedicht-bilder/sterben.jpg
+bildAlt: "Sterben"
 ---
 
 Zu sterben bedeutet, den Raum zu verlassen:

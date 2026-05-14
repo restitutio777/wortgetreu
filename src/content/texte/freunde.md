@@ -7,6 +7,8 @@ datum: 9.2.2024
 jahr: 2024
 sortKey: "2024-02-09"
 erstzeile: Alles, was war,
+bild: /gedicht-bilder/freunde.jpg
+bildAlt: "Schaeumend"
 ---
 
 Alles, was war,

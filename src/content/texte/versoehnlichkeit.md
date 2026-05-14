@@ -7,6 +7,8 @@ datum: 10.12.2024
 jahr: 2024
 sortKey: "2024-12-10"
 erstzeile: Komm in meine Arme, mein Kind,
+bild: /gedicht-bilder/versoehnlichkeit.jpg
+bildAlt: "Engel 3"
 ---
 
 Komm in meine Arme, mein Kind,

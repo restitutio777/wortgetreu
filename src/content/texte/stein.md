@@ -7,6 +7,8 @@ datum: 2004
 jahr: 2004
 sortKey: "2004-00-00"
 erstzeile: Stein, Individuum des Bodens,
+bild: /gedicht-bilder/stein.jpg
+bildAlt: "Stein"
 ---
 
 Stein, Individuum des Bodens,

@@ -5,6 +5,8 @@ themen:
   - geist-freiheit
   - licht-stille
 erstzeile: "**MAGIE DER POESIE **"
+bild: /gedicht-bilder/magie-der-poesie.jpg
+bildAlt: "Goldspuren"
 ---
 
 **MAGIE DER POESIE **

@@ -7,6 +7,8 @@ datum: 24.10.2024
 jahr: 2024
 sortKey: "2024-10-24"
 erstzeile: DU BIST, was mich aufatmen lässt
+bild: /gedicht-bilder/mein-gott.jpg
+bildAlt: "Sonnenwaerme"
 ---
 
 DU BIST, was mich aufatmen lässt

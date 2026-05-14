@@ -8,6 +8,8 @@ datum: 17.09.2024
 jahr: 2024
 sortKey: "2024-09-17"
 erstzeile: Alles Lebendige
+bild: /gedicht-bilder/kosmischer-tanz.jpg
+bildAlt: "Vergaenglichkeit"
 ---
 
 Alles Lebendige

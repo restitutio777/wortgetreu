@@ -35,34 +35,24 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
         Lyrik, Essays, Artikel und Geschichten von Katharina&nbsp;Offenborn.
       </p>
 
-      <p class="hero-services sans-sm">
-        Auch im Auftrag <span class="dot" aria-hidden="true">·</span>
-        Lektorat <span class="dot" aria-hidden="true">·</span>
-        Übersetzung <span class="dot" aria-hidden="true">·</span>
-        Bucherstellung <span class="dot" aria-hidden="true">·</span>
-        Biografien <span class="dot" aria-hidden="true">·</span>
-        Chroniken
+      <p class="hero-book">
+        <a
+          href="https://tredition.de/autoren/katharina-offenborn-31976/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.5C12 4.4 12.9 3.5 14 3.5h6c.5 0 1 .5 1 1v14c0 .5-.5 1-1 1h-6c-1.1 0-2 .9-2 2"/>
+            <path d="M12 5.5C12 4.4 11.1 3.5 10 3.5H4c-.5 0-1 .5-1 1v14c0 .5.5 1 1 1h6c1.1 0 2 .9 2 2"/>
+          </svg>
+          <span><em>Leuchtspuren</em> bei tredition <span aria-hidden="true">↗</span></span>
+        </a>
       </p>
     </div>
   </section>
 
-  <p class="book-note">
-    <svg class="book-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 5.5C12 4.4 12.9 3.5 14 3.5h6c.5 0 1 .5 1 1v14c0 .5-.5 1-1 1h-6c-1.1 0-2 .9-2 2"/>
-      <path d="M12 5.5C12 4.4 11.1 3.5 10 3.5H4c-.5 0-1 .5-1 1v14c0 .5.5 1 1 1h6c1.1 0 2 .9 2 2"/>
-    </svg>
-    <span>Im Buch: <em>Leuchtspuren. Eigenwege in die Zukunft.</em></span>
-    <a
-      href="https://tredition.de/autoren/katharina-offenborn-31976/"
-      target="_blank"
-      rel="noreferrer"
-      class="book-link"
-    >Bei tredition <span aria-hidden="true">↗</span></a>
-  </p>
-
   <section class="threshold">
     <header class="threshold-intro measure">
-      <p class="threshold-section-label sans">Drei Eingänge</p>
       <h2 class="threshold-section-title">Wo möchtest du beginnen?</h2>
     </header>
 
@@ -167,6 +157,23 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     </p>
   </section>
 
+  <aside class="services-band">
+    <div class="services-inner measure-wide">
+      <p class="services-label sans">Auch im Auftrag</p>
+      <ul class="services-list">
+        <li>Lektorat</li>
+        <li>Übersetzung</li>
+        <li>Bucherstellung</li>
+        <li>Biografien</li>
+        <li>Chroniken</li>
+        <li>Transkription</li>
+      </ul>
+      <p class="services-foot">
+        Anfragen über <a href="/ueber">Kontakt</a>.
+      </p>
+    </div>
+  </aside>
+
   <section class="quote-block">
     <blockquote>
       <p class="quote-text">
@@ -255,59 +262,100 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     text-wrap: pretty;
   }
 
-  .hero-services {
-    margin-top: var(--space-4);
-    color: var(--ink-faint);
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 0.6em;
-    justify-content: center;
-    text-transform: uppercase;
-  }
-
-  .hero-services .dot {
-    color: var(--accent-soft);
-  }
-
-  /* Buch-Hinweis — eine Zeile, kein Kasten */
-  .book-note {
-    margin-block: var(--space-7) 0;
-    padding-inline: var(--page-gutter);
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.6em;
-    flex-wrap: wrap;
+  /* Buch-Mini im Hero — knappe Zeile mit Icon */
+  .hero-book {
+    margin-top: var(--space-5);
     font-family: var(--font-serif);
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     color: var(--ink-soft);
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
-  .book-icon {
+  .hero-book a {
+    border: 0;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.3em 0.7em;
+    border-radius: 999px;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .hero-book a svg {
     color: var(--accent);
-    flex-shrink: 0;
-    transform: translateY(0.18em);
+    transform: translateY(0.5px);
   }
 
-  .book-note em {
+  .hero-book a em {
     font-style: italic;
     color: var(--ink);
   }
 
-  .book-link {
-    border: 0;
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-color: var(--accent-soft);
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
-    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+  .hero-book a:hover {
+    background: var(--accent-bg);
+    color: var(--ink);
   }
 
-  .book-link:hover {
+  /* Services-Band — am Seitenende, ruhig */
+  .services-band {
+    margin-top: var(--space-9);
+    padding-block: var(--space-7);
+    padding-inline: var(--page-gutter);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: linear-gradient(180deg, transparent, var(--saffron-bg) 50%, transparent);
+  }
+
+  .services-inner {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .services-label {
+    color: var(--saffron-deep);
+    margin-bottom: var(--space-4);
+  }
+
+  .services-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em 1.5em;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--ink);
+    margin-bottom: var(--space-5);
+    line-height: 1.5;
+  }
+
+  .services-list li {
+    position: relative;
+  }
+
+  .services-list li + li::before {
+    content: '·';
+    position: absolute;
+    left: -1em;
+    color: var(--ink-faint);
+    font-style: normal;
+  }
+
+  .services-foot {
+    font-family: var(--font-serif);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .services-foot a {
+    color: var(--accent);
+    border-bottom-color: var(--accent-soft);
+  }
+  .services-foot a:hover {
     color: var(--accent-deep);
-    text-decoration-color: var(--accent);
   }
 
   /* ── Threshold-Sektion ─────────────────────────────────────────────── */
@@ -323,18 +371,13 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     margin-bottom: var(--space-7);
   }
 
-  .threshold-section-label {
-    color: var(--moss);
-    margin-bottom: var(--space-3);
-  }
-
   .threshold-section-title {
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
     font-size: var(--text-xl);
-    color: var(--ink);
-    letter-spacing: var(--tracking-display);
+    color: var(--ink-soft);
+    letter-spacing: 0;
     line-height: 1.2;
   }
 
