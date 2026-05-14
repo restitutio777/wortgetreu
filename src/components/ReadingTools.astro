@@ -13,18 +13,12 @@ const shareUrl = url ?? Astro.url.toString();
     type="button"
     class="rt-btn rt-size"
     data-rt="size"
-    title="Schriftgröße"
+    title="Schriftgröße ändern"
     aria-label="Schriftgröße ändern"
   >
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M4 19V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v12" />
-      <path d="M4 13h4" />
-      <path d="M13 19V7" />
-      <path d="M11 7h4" />
-      <path d="M18 11v8" />
-      <path d="M15 19h6" />
-    </svg>
-    <span class="rt-label">A+</span>
+    <span class="rt-glyph rt-glyph-size" aria-hidden="true">
+      <span class="g-small">a</span><span class="g-large">A</span>
+    </span>
   </button>
 
   <button
@@ -33,17 +27,14 @@ const shareUrl = url ?? Astro.url.toString();
     data-rt="share"
     data-share-title={title}
     data-share-url={shareUrl}
-    title="Teilen oder Link kopieren"
+    title="Link teilen"
     aria-label="Diesen Text teilen"
   >
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="6" cy="12" r="2.5" />
-      <circle cx="17" cy="6" r="2.5" />
-      <circle cx="17" cy="18" r="2.5" />
-      <path d="M8.2 10.7l6.6-3.4" />
-      <path d="M8.2 13.3l6.6 3.4" />
+    <svg class="rt-glyph" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 14V4" />
+      <path d="M8 8l4-4 4 4" />
+      <path d="M4 14v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5" />
     </svg>
-    <span class="rt-label">Teilen</span>
     <span class="rt-toast" aria-hidden="true">Link kopiert</span>
   </button>
 </div>
@@ -51,7 +42,7 @@ const shareUrl = url ?? Astro.url.toString();
 <style>
   .reading-tools {
     display: flex;
-    gap: var(--space-2);
+    gap: var(--space-1);
     align-items: center;
     justify-content: flex-end;
     margin-bottom: var(--space-4);
@@ -60,16 +51,13 @@ const shareUrl = url ?? Astro.url.toString();
   .rt-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4em;
-    font-family: var(--font-sans);
-    font-size: var(--text-xs);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    justify-content: center;
     color: var(--ink-faint);
-    padding: 0.4em 0.7em;
+    width: 2rem;
+    height: 2rem;
     border: 0;
     background: transparent;
-    border-radius: 4px;
+    border-radius: 50%;
     cursor: pointer;
     transition: color var(--transition-fast), background var(--transition-fast);
     position: relative;
@@ -80,17 +68,41 @@ const shareUrl = url ?? Astro.url.toString();
     background: var(--paper-sunk);
   }
 
+  .rt-btn:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
   .rt-btn[data-active="true"] {
     color: var(--accent);
     background: var(--accent-bg);
   }
 
-  .rt-btn svg {
-    flex-shrink: 0;
+  /* Größenglyphe: kleines a + großes A */
+  .rt-glyph-size {
+    font-family: var(--font-serif);
+    font-style: italic;
+    display: inline-flex;
+    align-items: baseline;
+    line-height: 1;
+    letter-spacing: -0.04em;
   }
 
-  .rt-label {
-    font-weight: 500;
+  .rt-glyph-size .g-small {
+    font-size: 0.85em;
+  }
+
+  .rt-glyph-size .g-large {
+    font-size: 1.15em;
+  }
+
+  /* Größenglyphe wächst mit dem aktuellen Lese-Modus */
+  html[data-textsize='lg'] .rt-glyph-size .g-large {
+    font-size: 1.3em;
+  }
+
+  html[data-textsize='xl'] .rt-glyph-size .g-large {
+    font-size: 1.45em;
   }
 
   .rt-toast {
@@ -115,15 +127,6 @@ const shareUrl = url ?? Astro.url.toString();
   .rt-btn[data-toast="true"] .rt-toast {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  @media (max-width: 540px) {
-    .rt-label {
-      display: none;
-    }
-    .rt-btn {
-      padding: 0.5em;
-    }
   }
 </style>
 
@@ -164,17 +167,7 @@ const shareUrl = url ?? Astro.url.toString();
       const nxt = nextSize(cur);
       applySize(nxt);
       btn.dataset.active = nxt === 'base' ? 'false' : 'true';
-      // Update label so user sees state
-      const label = btn.querySelector('.rt-label');
-      if (label) {
-        label.textContent = nxt === 'base' ? 'A+' : nxt === 'lg' ? 'A++' : 'A+++';
-      }
     });
-    // initialize label for stored size
-    if (initial !== 'base') {
-      const label = btn.querySelector('.rt-label');
-      if (label) label.textContent = initial === 'lg' ? 'A++' : 'A+++';
-    }
   });
 
   document.querySelectorAll<HTMLButtonElement>('[data-rt="share"]').forEach((btn) => {
