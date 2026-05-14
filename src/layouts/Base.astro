@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description?: string;
   bodyClass?: string;
+  tone?: 'touch' | 'grow' | 'spark' | 'violet';
 }
 
-const { title, description, bodyClass } = Astro.props;
+const { title, description, bodyClass, tone } = Astro.props;
 const fullTitle = title.includes('wortgetreu') ? title : `${title} — wortgetreu`;
 const desc =
   description ??
@@ -40,7 +41,7 @@ const desc =
   <body class={bodyClass}>
     <a href="#main" class="sr-only">Zum Inhalt springen</a>
     <SiteHeader />
-    <main id="main">
+    <main id="main" data-tone={tone}>
       <slot />
     </main>
     <SiteFooter />
