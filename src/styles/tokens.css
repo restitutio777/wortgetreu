@@ -43,17 +43,17 @@
   --blue-soft: oklch(82% 0.035 248);
   --blue-bg: oklch(98% 0.008 245);
 
-  /* Magenta — ermutigen klingt mit dem Logo-"getreu" zusammen */
-  --rose: oklch(56% 0.17 348);
-  --rose-deep: oklch(46% 0.19 346);
-  --rose-soft: oklch(76% 0.08 348);
-  --rose-bg: oklch(98% 0.011 348);
+  /* Altrosa — ermutigen, gedämpft warm-rosé */
+  --rose: oklch(62% 0.1 15);
+  --rose-deep: oklch(50% 0.12 12);
+  --rose-soft: oklch(78% 0.055 18);
+  --rose-bg: oklch(97.5% 0.013 15);
 
-  /* Antikgold / blasses Champagner — inspirieren */
-  --saffron: oklch(72% 0.075 82);
-  --saffron-deep: oklch(60% 0.095 78);
-  --saffron-soft: oklch(84% 0.05 84);
-  --saffron-bg: oklch(97.8% 0.013 82);
+  /* Sonnengold — inspirieren, warmes Honiggelb */
+  --saffron: oklch(72% 0.13 72);
+  --saffron-deep: oklch(60% 0.15 68);
+  --saffron-soft: oklch(84% 0.075 75);
+  --saffron-bg: oklch(97.5% 0.018 75);
 
   /* Magenta — der einzige gesättigte Anker, ausschließlich im Logo */
   --magenta: oklch(56% 0.17 348);
@@ -92,8 +92,8 @@
   /* Hero-Verb-Töne — leichter, näher an den Karten-Hintergründen,
      wie zwei Schichten derselben Aquarell-Lasur */
   --verb-touch: oklch(68% 0.065 245);
-  --verb-grow: oklch(62% 0.13 348);
-  --verb-spark: oklch(74% 0.085 80);
+  --verb-grow: oklch(66% 0.095 12);
+  --verb-spark: oklch(72% 0.13 70);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
