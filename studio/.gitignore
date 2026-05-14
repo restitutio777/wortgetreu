@@ -1,0 +1,4 @@
+studio/.sanity/
+studio/dist/
+studio/node_modules/
+studio/.env

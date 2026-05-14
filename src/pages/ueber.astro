@@ -1,60 +1,38 @@
 ---
 import Base from '../layouts/Base.astro';
+import { PortableText } from 'astro-portabletext';
+import { getUeber } from '../lib/sanity';
+
+const ueber = await getUeber();
+const name = ueber.name ?? 'Katharina Offenborn';
+const [vorname, ...rest] = name.split(' ');
+const nachname = rest.join(' ');
+const byline =
+  ueber.byline ?? 'Wien, 1959 · Schriftstellerin, Lektorin, Übersetzerin';
+const kontakt = ueber.kontaktEmail ?? 'kontakt@wortgetreu.com';
 ---
 
 <Base
-  title="Über Katharina Offenborn"
+  title={`Über ${name}`}
   description="Wien 1959. Schriftstellerin, Lektorin und Übersetzerin. Lebt als Reisende in mehreren Ländern."
   tone="grow"
 >
   <article class="ueber measure">
     <header class="ueber-header">
       <p class="ueber-eyebrow sans">Über</p>
-      <h1 class="ueber-title">Katharina<br />Offenborn</h1>
-      <p class="ueber-byline">
-        <span>Wien, 1959</span>
-        <span class="dot" aria-hidden="true">·</span>
-        <span>Schriftstellerin, Lektorin, Übersetzerin</span>
-      </p>
+      <h1 class="ueber-title">{vorname}<br />{nachname}</h1>
+      <p class="ueber-byline">{byline}</p>
     </header>
 
     <div class="ueber-body">
-      <p class="lead">
-        Geboren 1959 in Wien, in eine Familie, in der man dem Wort eine hohe Bedeutung beimaß.
-        Schon als Kind ahnte sie beim Zuhören, wie wichtig es ist, genau ausdrücken zu können, was man sagen möchte.
-      </p>
-
-      <p>
-        Als Teenager schrieb sie Briefe in alle Welt, in drei Sprachen, und lotete die unterschiedlichen Sprachräume nach ihren Besonderheiten aus.
-        Anfang Zwanzig begann sie täglich Tagebuch zu schreiben, eine seelen­hygienische Gewohnheit, die sie über ein Jahrzehnt beibehielt.
-      </p>
-
-      <p>
-        Zeitgleich entdeckte sie das Gedicht als Möglichkeit, mit den Ebenen zwischen Wort und Wirklichkeit zu spielen und so auch das üblicherweise Unsagbare auszudrücken. Dieses Genre begleitet sie bis heute.
-      </p>
-
-      <p>
-        Anfang Vierzig folgten Essays, die ihrer damals aktuellen Lebenssituation entsprangen, bis sie die Kurzgeschichte in ihren Bann zog. Als Mitglied der Autorengruppe <em>Espressivo</em> veröffentlichte sie 2008 Kurzgeschichten in drei Anthologien; im selben Jahr erschienen drei Artikel in der Wochenschrift <em>Das Goetheanum</em>: die Reihe <em>Schwellenphänomene</em>.
-      </p>
-
-      <p>
-        Jahrelang übersetzte, kommentierte und redigierte sie Werke anderer. 2007 machte sie ihre Leidenschaft zum Hauptberuf und ist bis heute selbständig als Lektorin und Übersetzerin tätig.
-        2010 erstellte sie die Webseite <a href="https://www.anthroposophie-lebensnah.de/home" target="_blank" rel="noreferrer">anthroposophie-lebensnah.de</a> für Werke von Dr.&nbsp;Michaela&nbsp;Glöckler, in enger Zusammenarbeit mit ihr; die Seite wird laufend erweitert.
-      </p>
-
-      <p>
-        2020 erschien ihr Buch <a href="/buch"><em>Leuchtspuren. Eigenwege in die Zukunft</em></a>.
-      </p>
-
-      <p>
-        Zur Zeit lebt sie als Reisende in mehreren Ländern und übersetzt ihre Gedichte gemeinsam mit Muttersprachlern ins Englische, Französische und Griechische, um sie auch ihren Freunden in deren eigenen Sprachen zugänglich zu machen.
-      </p>
+      {ueber.lead && <p class="lead">{ueber.lead}</p>}
+      {ueber.biografie && <PortableText value={ueber.biografie} />}
     </div>
 
     <footer class="ueber-foot">
       <p class="sans-sm">
         Kontakt für Anfragen zu Lektorat, Übersetzung oder Lesungen:
-        <a href="mailto:kontakt@wortgetreu.com">kontakt@wortgetreu.com</a>
+        <a href={`mailto:${kontakt}`}>{kontakt}</a>
       </p>
     </footer>
   </article>
@@ -64,17 +42,14 @@ import Base from '../layouts/Base.astro';
   .ueber {
     padding-block: var(--space-7) var(--space-7);
   }
-
   .ueber-header {
     text-align: center;
     margin-bottom: var(--space-8);
   }
-
   .ueber-eyebrow {
     color: var(--rose-deep);
     margin-bottom: var(--space-4);
   }
-
   .ueber-title {
     font-family: var(--font-serif);
     font-size: clamp(2rem, 4.5vw, 3rem);
@@ -85,35 +60,23 @@ import Base from '../layouts/Base.astro';
     margin-bottom: var(--space-5);
     text-wrap: balance;
   }
-
   .ueber-byline {
     font-family: var(--font-serif);
     font-style: italic;
     color: var(--ink-soft);
     font-size: var(--text-base);
     line-height: 1.4;
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    justify-content: center;
   }
-
-  .ueber-byline .dot {
-    color: var(--ink-faint);
-  }
-
   .ueber-body {
     font-family: var(--font-serif);
     font-size: var(--text-base);
     line-height: var(--lh-prose);
     color: var(--ink);
   }
-
-  .ueber-body p {
+  .ueber-body :global(p) {
     margin-bottom: 1em;
     text-wrap: pretty;
   }
-
   .ueber-body .lead {
     font-size: var(--text-lg);
     font-style: italic;
@@ -121,18 +84,15 @@ import Base from '../layouts/Base.astro';
     color: var(--ink);
     margin-bottom: var(--space-5);
   }
-
-  .ueber-body em {
+  .ueber-body :global(em) {
     font-style: italic;
   }
-
   .ueber-foot {
     margin-top: var(--space-8);
     padding-top: var(--space-5);
     border-top: 1px solid var(--rule);
     text-align: center;
   }
-
   .ueber-foot a {
     color: var(--accent);
     border-bottom-color: var(--rule-strong);

@@ -1,18 +1,35 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { render } from 'astro:content';
+import { PortableText } from 'astro-portabletext';
+import type { Werktext } from '../lib/sanity';
 
 interface Props {
-  text: CollectionEntry<'texte'>;
+  text: Werktext;
 }
 
 const { text } = Astro.props;
-const { Content } = await render(text);
-const form = text.data.form;
+const form = text.form;
+const isLyrik = form === 'gedicht';
+const intro = text.intro;
 ---
 
 <div class:list={['text-body', `text-body--${form}`]}>
-  <Content />
+  {
+    intro && (
+      <p class="text-intro">
+        <strong>{intro}</strong>
+      </p>
+    )
+  }
+  {
+    isLyrik && text.gedichtBody && (
+      <div class="lyrik-body">{text.gedichtBody}</div>
+    )
+  }
+  {
+    !isLyrik && text.prosaBody && (
+      <PortableText value={text.prosaBody} />
+    )
+  }
 </div>
 
 <style is:global>
@@ -20,6 +37,18 @@ const form = text.data.form;
     font-family: var(--font-serif);
     color: var(--ink);
     margin-block: 0;
+  }
+
+  /* ── Artikel-Intro ─────────────────────────────────────────────────── */
+  .text-body--artikel .text-intro {
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: var(--space-6);
+  }
+  .text-body--artikel .text-intro strong {
+    font-weight: 400;
   }
 
   /* ── Gedicht ──────────────────────────────────────────────────────── */
@@ -32,19 +61,10 @@ const form = text.data.form;
     margin-inline: auto;
   }
 
-  .text-body--gedicht p {
-    margin-bottom: var(--space-5);
+  .text-body--gedicht .lyrik-body {
+    white-space: pre-line;
     text-wrap: pretty;
     hyphens: none;
-  }
-
-  .text-body--gedicht p:last-child {
-    margin-bottom: 0;
-  }
-
-  .text-body--gedicht br {
-    content: '';
-    margin-top: 0.15em;
   }
 
   /* ── Prosa-Formen ─────────────────────────────────────────────────── */
@@ -64,26 +84,8 @@ const form = text.data.form;
     hyphens: auto;
   }
 
-  /* Artikel-Lead: erstes <p> beginnt häufig mit <strong>…</strong> als
-     redaktionelle Vorbemerkung. Wir setzen es etwas größer und kursiv. */
-  .text-body--artikel > p:first-of-type strong:first-child,
-  .text-body--artikel > p:first-of-type:has(> strong:only-child) {
-    display: block;
-  }
-  .text-body--artikel > p:first-of-type {
-    font-size: var(--text-lg);
-    font-style: italic;
-    color: var(--ink);
-    margin-bottom: var(--space-6);
-    line-height: 1.5;
-  }
-  .text-body--artikel > p:first-of-type strong {
-    font-weight: 400;
-  }
-
-  /* Zwischentitel in Artikeln */
-  .text-body--artikel h2,
   .text-body--essay h2,
+  .text-body--artikel h2,
   .text-body--geschichte h2 {
     font-family: var(--font-serif);
     font-size: var(--text-xl);
@@ -94,19 +96,6 @@ const form = text.data.form;
     margin-bottom: var(--space-3);
     line-height: var(--lh-tight);
     text-align: left;
-  }
-
-  /* "Erschienen in…"-Hinweis am Ende eines Artikels: erkenne anhand des
-     letzten Paragraphen, der oft kursiv die Quellenangabe enthält. */
-  .text-body--artikel > p:last-child:where(:not(:only-child)) {
-    margin-top: var(--space-7);
-    font-family: var(--font-sans);
-    font-size: var(--text-xs);
-    letter-spacing: 0.02em;
-    color: var(--ink-soft);
-    border-top: 1px solid var(--rule);
-    padding-top: var(--space-4);
-    line-height: 1.5;
   }
 
   .text-body em {

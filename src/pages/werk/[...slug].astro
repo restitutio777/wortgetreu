@@ -1,15 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TextHeader from '../../components/TextHeader.astro';
 import TextBody from '../../components/TextBody.astro';
 import ReadingTools from '../../components/ReadingTools.astro';
-import { byDateDesc } from '../../lib/content';
+import { getAlleTexte, urlFor } from '../../lib/sanity';
+import type { Werktext } from '../../lib/sanity';
 
 export async function getStaticPaths() {
-  const all = (await getCollection('texte')).sort(byDateDesc);
+  const all = await getAlleTexte();
   return all.map((entry, index) => ({
-    params: { slug: entry.id },
+    params: { slug: entry.slug },
     props: {
       entry,
       prev: all[index - 1] ?? null,
@@ -18,27 +18,30 @@ export async function getStaticPaths() {
   }));
 }
 
-const { entry, prev, next } = Astro.props;
-const desc = entry.data.erstzeile ?? `${entry.data.title} — ${entry.data.form}`;
-const measureClass = entry.data.form === 'gedicht' ? 'measure measure-poem' : 'measure';
-const showImage = entry.data.form === 'gedicht' && entry.data.bild;
+interface Props {
+  entry: Werktext;
+  prev: Werktext | null;
+  next: Werktext | null;
+}
+
+const { entry, prev, next } = Astro.props as Props;
+const desc = entry.erstzeile ?? `${entry.title} — ${entry.form}`;
+const measureClass = entry.form === 'gedicht' ? 'measure measure-poem' : 'measure';
+const bildUrl =
+  entry.form === 'gedicht' && entry.bild?.asset
+    ? urlFor(entry.bild).width(640).height(480).fit('crop').auto('format').url()
+    : null;
+const bildAlt = entry.bild?.alt ?? entry.title;
 ---
 
-<Base title={entry.data.title} description={desc}>
+<Base title={entry.title} description={desc}>
   <article class={measureClass}>
-    <ReadingTools title={entry.data.title} />
+    <ReadingTools title={entry.title} />
     <TextHeader text={entry} />
     {
-      showImage && (
+      bildUrl && (
         <figure class="poem-figure">
-          <img
-            src={entry.data.bild}
-            alt={entry.data.bildAlt ?? entry.data.title}
-            loading="lazy"
-            decoding="async"
-            width="640"
-            height="480"
-          />
+          <img src={bildUrl} alt={bildAlt} loading="lazy" decoding="async" width="640" height="480" />
         </figure>
       )
     }
@@ -51,9 +54,9 @@ const showImage = entry.data.form === 'gedicht' && entry.data.bild;
     <div class="text-nav-prev">
       {
         prev && (
-          <a href={`/werk/${prev.id}`}>
+          <a href={`/werk/${prev.slug}`}>
             <span class="sans">Vorheriger Text</span>
-            <span class="title">{prev.data.title}</span>
+            <span class="title">{prev.title}</span>
           </a>
         )
       }
@@ -64,9 +67,9 @@ const showImage = entry.data.form === 'gedicht' && entry.data.bild;
     <div class="text-nav-next">
       {
         next && (
-          <a href={`/werk/${next.id}`}>
+          <a href={`/werk/${next.slug}`}>
             <span class="sans">Nächster Text</span>
-            <span class="title">{next.data.title}</span>
+            <span class="title">{next.title}</span>
           </a>
         )
       }

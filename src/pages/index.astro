@@ -1,19 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getAllTexte, formatDatum } from '../lib/content';
-import { formInfo } from '../content.config';
+import { getAlleTexte, getSettings, formatDatum, formInfo } from '../lib/sanity';
+import type { Werktext } from '../lib/sanity';
 
-const alle = await getAllTexte();
-const byId = new Map(alle.map((t) => [t.id, t]));
+const settings = await getSettings();
+const alle = await getAlleTexte();
 
-const stillerMomentIds = ['das-unsagbare', 'schutzengel', 'mitleid'];
-const schwellenIds = ['krankenhaus', 'schule', 'kathedrale'];
-const neueste = alle
-  .filter((t) => t.data.jahr && t.data.jahr >= 2024)
-  .slice(0, 3);
+const stillerMoment: Werktext[] = settings.eingangStille?.texte ?? [];
+const schwellen: Werktext[] = settings.eingangSchwellen?.texte ?? [];
+const neueste: Werktext[] =
+  settings.eingangFrisch?.texte && settings.eingangFrisch.texte.length > 0
+    ? settings.eingangFrisch.texte
+    : alle.slice(0, 3);
 
-const stillerMoment = stillerMomentIds.map((id) => byId.get(id)).filter(Boolean);
-const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
+const stilleLead = settings.eingangStille?.lead;
+const schwellenLead = settings.eingangSchwellen?.lead;
+const frischLead = settings.eingangFrisch?.lead;
+
+const welcome = settings.heroBegruessung ?? 'Schön, dass du hierher gefunden hast.';
+const verben = settings.heroVerben ?? ['berühren', 'ermutigen', 'inspirieren'];
+const titelEinleitung = settings.heroTitelEinleitung ?? 'Lass dich';
+const heroUntertitel =
+  settings.heroUntertitel ??
+  'Lyrik, Essays, Artikel und Geschichten von Katharina Offenborn.';
+const leistungen = settings.leistungen ?? [
+  'Lektorat',
+  'Übersetzung',
+  'Bucherstellung',
+  'Biografien',
+  'Chroniken',
+  'Transkription',
+];
+const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
 ---
 
 <Base
@@ -22,18 +40,17 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
 >
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-welcome">Schön, dass du hierher gefunden hast.</p>
+      <p class="hero-welcome">{welcome}</p>
 
       <h1 class="hero-title">
-        <em class="verb verb-call">Lass dich</em><br />
-        <em class="verb verb-touch">berühren</em>,
-        <em class="verb verb-grow">ermutigen</em>,<br />
-        <em class="verb verb-spark">inspirieren</em>.
+        <em class="verb verb-call">{titelEinleitung}</em><br />
+        <em class="verb verb-touch">{verben[0]}</em>,
+        <em class="verb verb-grow">{verben[1]}</em>,<br />
+        <em class="verb verb-spark">{verben[2]}</em>.
       </h1>
 
-      <p class="hero-subtitle">
-        Lyrik, Essays, Artikel und Geschichten von Katharina&nbsp;Offenborn.
-      </p>
+      <p class="hero-subtitle" set:html={heroUntertitel} />
+
 
       <p class="hero-book">
         <a
@@ -53,7 +70,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
 
   <section class="threshold">
     <header class="threshold-intro measure">
-      <h2 class="threshold-section-title">Wo möchtest du beginnen?</h2>
+      <h2 class="threshold-section-title">{intro}</h2>
     </header>
 
     <ol class="threshold-list measure-wide">
@@ -63,20 +80,18 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
             <span class="numeral">I</span>
           </p>
           <h3 class="threshold-title">Stille</h3>
-          <p class="threshold-lead">
-            Drei kurze Gedichte, die nicht eilen. Setz dich, atme einmal aus, lies in der Reihenfolge, oder springe.
-          </p>
+          <p class="threshold-lead">{stilleLead ?? 'Drei kurze Gedichte, die nicht eilen.'}</p>
         </header>
         <ol class="thread-list">
           {
             stillerMoment.map((t, i) => (
               t && (
                 <li>
-                  <a href={`/werk/${t.id}`}>
+                  <a href={`/werk/${t.slug}`}>
                     <span class="thread-num">{String(i + 1).padStart(2, '0')}</span>
                     <span class="thread-body">
-                      <span class="thread-title">{t.data.title}</span>
-                      <span class="thread-preview">{t.data.erstzeile ?? formInfo[t.data.form].label}</span>
+                      <span class="thread-title">{t.title}</span>
+                      <span class="thread-preview">{t.erstzeile ?? formInfo[t.form].label}</span>
                     </span>
                   </a>
                 </li>
@@ -92,21 +107,19 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
             <span class="numeral">II</span>
           </p>
           <h3 class="threshold-title">Schwellen</h3>
-          <p class="threshold-lead">
-            Drei Artikel, 2008 für die Wochenschrift <em>Das Goetheanum</em> geschrieben. Über Orte, an denen sich der Mensch begegnet.
-          </p>
+          <p class="threshold-lead">{schwellenLead ?? 'Drei Artikel, 2008 in Das Goetheanum erschienen.'}</p>
         </header>
         <ol class="thread-list">
           {
             schwellen.map((t, i) => (
               t && (
                 <li>
-                  <a href={`/werk/${t.id}`}>
+                  <a href={`/werk/${t.slug}`}>
                     <span class="thread-num">{String(i + 1).padStart(2, '0')}</span>
                     <span class="thread-body">
-                      <span class="thread-title">{t.data.title}</span>
+                      <span class="thread-title">{t.title}</span>
                       <span class="thread-preview">
-                        {t.data.veroeffentlichtAm ?? formInfo[t.data.form].label}
+                        {t.veroeffentlichtAm ?? formInfo[t.form].label}
                       </span>
                     </span>
                   </a>
@@ -123,20 +136,18 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
             <span class="numeral">III</span>
           </p>
           <h3 class="threshold-title">Frisch</h3>
-          <p class="threshold-lead">
-            Die jüngsten Texte. Was zuletzt geschrieben wurde.
-          </p>
+          <p class="threshold-lead">{frischLead ?? 'Die jüngsten Texte. Was zuletzt geschrieben wurde.'}</p>
         </header>
         <ol class="thread-list">
           {
             neueste.map((t, i) => (
               <li>
-                <a href={`/werk/${t.id}`}>
+                <a href={`/werk/${t.slug}`}>
                   <span class="thread-num">{String(i + 1).padStart(2, '0')}</span>
                   <span class="thread-body">
-                    <span class="thread-title">{t.data.title}</span>
+                    <span class="thread-title">{t.title}</span>
                     <span class="thread-preview">
-                      {formInfo[t.data.form].label}
+                      {formInfo[t.form].label}
                       <span class="dot" aria-hidden="true">·</span>
                       {formatDatum(t)}
                     </span>
@@ -158,12 +169,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
     <div class="services-inner measure-wide">
       <p class="services-label sans">Auch im Auftrag</p>
       <ul class="services-list">
-        <li>Lektorat</li>
-        <li>Übersetzung</li>
-        <li>Bucherstellung</li>
-        <li>Biografien</li>
-        <li>Chroniken</li>
-        <li>Transkription</li>
+        {leistungen.map((l) => <li>{l}</li>)}
       </ul>
       <p class="services-foot">
         Anfragen über <a href="/ueber">Kontakt</a>.

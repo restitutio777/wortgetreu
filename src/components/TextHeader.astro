@@ -1,13 +1,13 @@
 ---
-import { themaInfo, formInfo } from '../content.config';
-import type { Text } from '../lib/content';
+import { themaInfo, formInfo } from '../lib/sanity';
+import type { Werktext } from '../lib/sanity';
 
 interface Props {
-  text: Text;
+  text: Werktext;
 }
 
 const { text } = Astro.props;
-const { title, form, themen, datum, jahr, veroeffentlichtIn, veroeffentlichtAm } = text.data;
+const { title, form, themen, datum, jahr, veroeffentlichtIn, veroeffentlichtAm } = text;
 const formLabel = formInfo[form].label;
 const datumAnzeige = datum || (jahr ? String(jahr) : undefined);
 ---
@@ -16,14 +16,14 @@ const datumAnzeige = datum || (jahr ? String(jahr) : undefined);
   <p class="text-eyebrow sans">
     <span>{formLabel}</span>
     {
-      themen.length > 0 && (
+      themen && themen.length > 0 && (
         <>
           <span class="dot" aria-hidden="true">·</span>
           <span class="themen">
             {themen.map((t, i) => (
               <>
                 {i > 0 && <span class="sep" aria-hidden="true">·</span>}
-                <a href={`/werk?thema=${t}`}>{themaInfo[t].label}</a>
+                <a href={`/werk?thema=${t}`}>{themaInfo[t]?.label ?? t}</a>
               </>
             ))}
           </span>

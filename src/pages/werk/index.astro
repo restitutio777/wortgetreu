@@ -1,19 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getAllTexte, formatDatum, getJahr } from '../../lib/content';
-import { themaInfo, formInfo } from '../../content.config';
+import { getAlleTexte, formatDatum, getJahr, themaInfo, formInfo } from '../../lib/sanity';
 
-const texte = await getAllTexte();
+const texte = await getAlleTexte();
 
-const formen: Array<keyof typeof formInfo> = ['gedicht', 'essay', 'artikel', 'geschichte'];
-const themen = Object.keys(themaInfo) as Array<keyof typeof themaInfo>;
+const formen = ['gedicht', 'essay', 'artikel', 'geschichte'] as const;
+const themen = Object.keys(themaInfo);
 
 const counts = {
   alle: texte.length,
-  ...Object.fromEntries(formen.map((f) => [f, texte.filter((t) => t.data.form === f).length])),
+  ...Object.fromEntries(formen.map((f) => [f, texte.filter((t) => t.form === f).length])),
 };
 const themaCounts = Object.fromEntries(
-  themen.map((th) => [th, texte.filter((t) => t.data.themen.includes(th)).length])
+  themen.map((th) => [th, texte.filter((t) => t.themen?.includes(th)).length])
 );
 ---
 
@@ -80,13 +79,13 @@ const themaCounts = Object.fromEntries(
         return (
           <li
             class="werk-item"
-            data-form={t.data.form}
-            data-themen={t.data.themen.join(' ')}
+            data-form={t.form}
+            data-themen={(t.themen ?? []).join(' ')}
             data-jahr={jahr ?? ''}
           >
-            <a href={`/werk/${t.id}`}>
+            <a href={`/werk/${t.slug}`}>
               <p class="item-eyebrow sans">
-                {formInfo[t.data.form].label}
+                {formInfo[t.form].label}
                 {datum && (
                   <>
                     <span aria-hidden="true">·</span>
@@ -94,9 +93,9 @@ const themaCounts = Object.fromEntries(
                   </>
                 )}
               </p>
-              <h2 class="item-title">{t.data.title}</h2>
-              {t.data.erstzeile && (
-                <p class="item-preview">{t.data.erstzeile}</p>
+              <h2 class="item-title">{t.title}</h2>
+              {t.erstzeile && (
+                <p class="item-preview">{t.erstzeile}</p>
               )}
             </a>
           </li>

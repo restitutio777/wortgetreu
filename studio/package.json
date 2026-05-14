@@ -1,0 +1,27 @@
+{
+  "name": "wortgetreu-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sanity Studio for wortgetreu.com",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
+  },
+  "dependencies": {
+    "@sanity/icons": "^3.5.0",
+    "@sanity/vision": "^3.65.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.65.0",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^4.0.0",
+    "@types/react": "^18.3.12",
+    "typescript": "^5.6.3"
+  }
+}

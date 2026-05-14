@@ -1,33 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
+import { PortableText } from 'astro-portabletext';
+import { getBuch } from '../lib/sanity';
+
+const buch = await getBuch();
+const title = buch.title ?? 'Leuchtspuren';
+const untertitel = buch.untertitel ?? 'Eigenwege in die Zukunft';
+const jahr = buch.jahr ?? 2020;
+const verlag = buch.verlag ?? 'tredition';
+const bestellLink =
+  buch.bestellLink ?? 'https://tredition.de/autoren/katharina-offenborn-31976/';
+const lead =
+  buch.lead ??
+  'Eine Sammlung von Texten, die zur Suche nach eigenen Wegen ermutigen.';
 ---
 
 <Base
-  title="Buch — Leuchtspuren"
-  description="Leuchtspuren — Eigenwege in die Zukunft. Das Buch von Katharina Offenborn, erschienen 2020 bei tredition."
+  title={`Buch — ${title}`}
+  description={`${title} — ${untertitel}. Das Buch von Katharina Offenborn, erschienen ${jahr} bei ${verlag}.`}
   tone="spark"
 >
   <article class="buch measure">
     <header class="buch-header">
-      <p class="buch-eyebrow sans">Das Buch · 2020</p>
+      <p class="buch-eyebrow sans">Das Buch · {jahr}</p>
       <h1 class="buch-title">
-        <span class="buch-main">Leuchtspuren</span>
-        <span class="buch-sub">Eigenwege in die Zukunft</span>
+        <span class="buch-main">{title}</span>
+        <span class="buch-sub">{untertitel}</span>
       </h1>
       <p class="buch-author">von Katharina&nbsp;Offenborn</p>
     </header>
 
     <div class="buch-body">
-      <p class="lead">
-        Eine Sammlung von Texten, die zur Suche nach eigenen Wegen ermutigen. Gerade dort, wo das Gewohnte nicht mehr trägt.
-      </p>
-
-      <p>
-        Erschienen 2020 im tredition-Verlag. Im Buchhandel und beim Verlag erhältlich.
-      </p>
+      <p class="lead">{lead}</p>
 
       <div class="buch-actions">
-        <a class="buch-cta" href="https://tredition.de/autoren/katharina-offenborn-31976/" target="_blank" rel="noreferrer">
+        <a class="buch-cta" href={bestellLink} target="_blank" rel="noreferrer">
           Beim Verlag bestellen
           <span aria-hidden="true">→</span>
         </a>
@@ -36,14 +43,7 @@ import Base from '../layouts/Base.astro';
 
       <hr class="rule" />
 
-      <h2>Über das Buch</h2>
-      <p>
-        <em>Leuchtspuren</em> versammelt Reflexionen, Geschichten und Anstöße aus zwei Jahrzehnten. Texte, die nicht beantworten, sondern offenhalten. Sie suchen nach dem, was unter dem Sichtbaren wirkt: am Schwellenmoment, am Übergang, in der stillen Geste.
-      </p>
-
-      <p>
-        Die Autorin schreibt aus einer anthroposophisch grundierten Aufmerksamkeit, ohne je belehrend zu werden. Statt Antworten gibt es Spuren, auf denen jede:r Leser:in eigene Schritte gehen kann.
-      </p>
+      {buch.beschreibung && <PortableText value={buch.beschreibung} />}
     </div>
   </article>
 </Base>
@@ -52,17 +52,14 @@ import Base from '../layouts/Base.astro';
   .buch {
     padding-block: var(--space-7) var(--space-9);
   }
-
   .buch-header {
     text-align: center;
     margin-bottom: var(--space-7);
   }
-
   .buch-eyebrow {
     color: var(--saffron-deep);
     margin-bottom: var(--space-5);
   }
-
   .buch-title {
     font-family: var(--font-serif);
     font-weight: 400;
@@ -74,44 +71,37 @@ import Base from '../layouts/Base.astro';
     flex-direction: column;
     gap: var(--space-2);
   }
-
   .buch-main {
     font-size: var(--text-display);
     font-variant: small-caps;
     letter-spacing: 0.04em;
   }
-
   .buch-sub {
     font-style: italic;
     font-size: var(--text-lg);
     color: var(--ink-soft);
     font-weight: 400;
   }
-
   @media (min-width: 720px) {
     .buch-sub {
       font-size: var(--text-xl);
     }
   }
-
   .buch-author {
     font-family: var(--font-serif);
     font-style: italic;
     color: var(--ink-soft);
     font-size: var(--text-base);
   }
-
   .buch-body {
     font-family: var(--font-serif);
     font-size: var(--text-base);
     line-height: var(--lh-prose);
     color: var(--ink);
   }
-
-  .buch-body p {
+  .buch-body :global(p) {
     margin-bottom: 1em;
   }
-
   .buch-body .lead {
     font-size: var(--text-lg);
     font-style: italic;
@@ -119,8 +109,7 @@ import Base from '../layouts/Base.astro';
     line-height: 1.5;
     margin-bottom: var(--space-5);
   }
-
-  .buch-body h2 {
+  .buch-body :global(h2) {
     font-family: var(--font-serif);
     font-size: var(--text-xl);
     font-weight: 500;
@@ -130,7 +119,6 @@ import Base from '../layouts/Base.astro';
     margin-bottom: var(--space-3);
     line-height: var(--lh-tight);
   }
-
   .buch-actions {
     margin-block: var(--space-6);
     display: flex;
@@ -138,7 +126,6 @@ import Base from '../layouts/Base.astro';
     gap: var(--space-3);
     align-items: flex-start;
   }
-
   .buch-cta {
     border: 0;
     display: inline-flex;
@@ -152,13 +139,11 @@ import Base from '../layouts/Base.astro';
     border-bottom: 1px solid var(--ink);
     transition: color var(--transition-fast), gap var(--transition-base);
   }
-
   .buch-cta:hover {
     color: var(--accent);
     gap: 0.75em;
     border-bottom-color: var(--accent);
   }
-
   .buch-or {
     color: var(--ink-soft);
     font-style: italic;

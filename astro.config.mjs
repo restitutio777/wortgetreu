@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import remarkBreaks from 'remark-breaks';
+import sanity from '@sanity/astro';
 
 export default defineConfig({
   site: 'https://www.wortgetreu.com',
@@ -7,8 +7,12 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
-  markdown: {
-    remarkPlugins: [remarkBreaks],
-    smartypants: true,
-  },
+  integrations: [
+    sanity({
+      projectId: 'vgln64hw',
+      dataset: 'production',
+      apiVersion: '2025-02-01',
+      useCdn: true,
+    }),
+  ],
 });
