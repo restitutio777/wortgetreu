@@ -32,18 +32,18 @@
   --blue-soft: oklch(78% 0.045 240);
   --blue-bg: oklch(95% 0.015 240);
 
-  /* Lavendel / Orchidee — der ehemalige Rose-Ton wandert ins Lila,
-     leise und kühl statt warm-pink */
-  --rose: oklch(64% 0.075 310);
-  --rose-deep: oklch(52% 0.095 308);
-  --rose-soft: oklch(78% 0.045 310);
-  --rose-bg: oklch(95% 0.018 310);
+  /* Heide / weicher Mauve — Lavendel mit einer Spur Wärme,
+     Richtung Heidekraut statt reines Lila */
+  --rose: oklch(64% 0.085 325);
+  --rose-deep: oklch(52% 0.105 322);
+  --rose-soft: oklch(78% 0.05 325);
+  --rose-bg: oklch(95% 0.022 325);
 
-  /* Mond-Gold — der einzige warme Akzent, bewusst sparsam */
-  --saffron: oklch(72% 0.105 80);
-  --saffron-deep: oklch(60% 0.125 78);
-  --saffron-soft: oklch(84% 0.06 82);
-  --saffron-bg: oklch(95% 0.025 82);
+  /* Honig-Gold — sonnenhaft warm, jenseits von Yellow-Kitsch */
+  --saffron: oklch(68% 0.135 68);
+  --saffron-deep: oklch(56% 0.155 62);
+  --saffron-soft: oklch(82% 0.075 70);
+  --saffron-bg: oklch(94% 0.032 72);
 
   /* Magnolie — sehr sparsam, für sekundäre Markierungen */
   --magenta: oklch(60% 0.095 355);
@@ -68,8 +68,8 @@
   /* Hero-Verb-Töne — atmosphärischer als die System-Akzente,
      aber noch lesbar als Display-Text */
   --verb-touch: oklch(55% 0.105 240);
-  --verb-grow: oklch(55% 0.115 308);
-  --verb-spark: oklch(62% 0.135 78);
+  --verb-grow: oklch(56% 0.13 322);
+  --verb-spark: oklch(60% 0.16 65);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
