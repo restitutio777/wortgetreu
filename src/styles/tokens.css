@@ -53,6 +53,12 @@
   --spark: var(--saffron);
   --spark-deep: var(--saffron-deep);
 
+  /* Hero-Verb-Töne — pudriger als die System-Akzente,
+     weil Display-Größen mehr Luft vertragen. */
+  --verb-touch: oklch(66% 0.072 250);
+  --verb-grow: oklch(65% 0.085 24);
+  --verb-spark: oklch(72% 0.13 80);
+
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
   --accent-deep: var(--rose-deep);
