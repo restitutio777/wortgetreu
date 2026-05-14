@@ -9,19 +9,19 @@
      gefasst von einem leise gewärmten Papier und sepia-warmer Tinte.
      Jeder Verb-Akzent hat eine eigene Hintergrund-Lasur,
      mit der eine Karte oder Sektion atmen darf. */
-  /* Papier: Pergament-warm, eine Spur Körper im Cremeton */
-  --paper: oklch(97% 0.012 75);
-  --paper-sunk: oklch(94.5% 0.015 70);
-  --paper-warm: oklch(92.5% 0.022 65);
-  --paper-deep: oklch(89.5% 0.028 60);
+  /* Papier: museumshaft, fast-weiß mit leiser Wärme */
+  --paper: oklch(98.5% 0.004 85);
+  --paper-sunk: oklch(96.5% 0.008 75);
+  --paper-warm: oklch(94% 0.014 70);
+  --paper-deep: oklch(91% 0.02 60);
 
-  /* Tinte: warm-tiefes Sepia statt kalter Tinten-Indigo */
-  --ink: oklch(24% 0.025 55);
-  --ink-soft: oklch(46% 0.022 60);
-  --ink-faint: oklch(64% 0.018 65);
+  /* Tinte: warmes dunkles Sepia */
+  --ink: oklch(22% 0.018 60);
+  --ink-soft: oklch(46% 0.018 65);
+  --ink-faint: oklch(66% 0.014 65);
 
-  --rule: oklch(83% 0.016 70);
-  --rule-strong: oklch(71% 0.022 65);
+  --rule: oklch(88% 0.01 75);
+  --rule-strong: oklch(76% 0.018 70);
 
   /* Mondlicht-Triade — zwei kühl-leise Stimmen (Eis-Blau, Lavendel)
      und ein einziger warmer Lichtpunkt (blasses Gold).
@@ -33,34 +33,33 @@
      Gelb/Safran = Denken/Geistesblitz (inspirieren)
      Gleich helle Sättigung, balancierte Triade. */
 
-  /* Galerie-Palette — entsättigt, modern, wertvoll.
-     Drei pudrige Akzentnoten + ein einziger gesättigter Magenta-Anker im Logo.
-     Alle drei sitzen in derselben Lightness-Familie (60-72%) und
-     niedrigem Chroma (0.06-0.1) — Aquarell auf wertvollem Papier. */
+  /* Erdton-Trio — drei klar getrennte Hue-Familien.
+     Keine in der Nähe vom Magenta-Logo (348).
+     Modern, museumshaft, entsättigt, wertvoll. */
 
-  /* Dove-Blue — berühren, kontemplativ, sehr leise */
-  --blue: oklch(64% 0.055 230);
-  --blue-deep: oklch(52% 0.075 228);
-  --blue-soft: oklch(80% 0.035 232);
-  --blue-bg: oklch(96.8% 0.018 232);
+  /* Schiefer-Blau — berühren, kühl-kontemplativ */
+  --blue: oklch(64% 0.06 245);
+  --blue-deep: oklch(50% 0.08 242);
+  --blue-soft: oklch(82% 0.035 248);
+  --blue-bg: oklch(97.5% 0.018 245);
 
-  /* Pflaume / staubiges Amaranth — ermutigen, Magenta-Familie */
-  --rose: oklch(62% 0.075 340);
-  --rose-deep: oklch(50% 0.095 338);
-  --rose-soft: oklch(80% 0.045 342);
-  --rose-bg: oklch(96.8% 0.022 340);
+  /* Terracotta / Ton-Erde — ermutigen, irdene Wärme */
+  --rose: oklch(62% 0.085 38);
+  --rose-deep: oklch(50% 0.105 32);
+  --rose-soft: oklch(80% 0.05 42);
+  --rose-bg: oklch(97.5% 0.022 38);
 
-  /* Champagner / blasses Antikgold — inspirieren, leuchtend leicht */
+  /* Antikgold / blasses Champagner — inspirieren */
   --saffron: oklch(72% 0.075 82);
-  --saffron-deep: oklch(60% 0.1 78);
+  --saffron-deep: oklch(60% 0.095 78);
   --saffron-soft: oklch(84% 0.05 84);
-  --saffron-bg: oklch(96.8% 0.026 82);
+  --saffron-bg: oklch(97.5% 0.022 82);
 
-  /* Magenta — der gesättigte Anker, nur am Logo */
-  --magenta: oklch(55% 0.16 348);
-  --magenta-deep: oklch(44% 0.18 346);
-  --magenta-soft: oklch(74% 0.085 348);
-  --magenta-bg: oklch(96.8% 0.024 348);
+  /* Magenta — der einzige gesättigte Anker, ausschließlich im Logo */
+  --magenta: oklch(56% 0.17 348);
+  --magenta-deep: oklch(46% 0.19 346);
+  --magenta-soft: oklch(76% 0.08 348);
+  --magenta-bg: oklch(97% 0.022 348);
 
   /* Schwellen-Violett — der vierte, sehr seltene Akzent.
      Steht für Geist-berührt-Erde, das Unsagbare, die Mystik.
@@ -90,10 +89,10 @@
   --spark-soft: var(--saffron-soft);
   --spark-bg: var(--saffron-bg);
 
-  /* Hero-Verb-Töne — entsättigt galerie-modern */
-  --verb-touch: oklch(58% 0.08 230);
-  --verb-grow: oklch(58% 0.09 340);
-  --verb-spark: oklch(66% 0.1 80);
+  /* Hero-Verb-Töne — drei klar unterschiedene Erdton-Akzente */
+  --verb-touch: oklch(58% 0.075 245);
+  --verb-grow: oklch(56% 0.105 35);
+  --verb-spark: oklch(64% 0.115 78);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
