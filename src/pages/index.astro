@@ -25,7 +25,7 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
       <p class="hero-welcome">Schön, dass du hierher gefunden hast.</p>
 
       <h1 class="hero-title">
-        Lass dich<br />
+        <em class="verb verb-call">Lass dich</em><br />
         <em class="verb verb-touch">berühren</em>,
         <em class="verb verb-grow">ermutigen</em>,<br />
         <em class="verb verb-spark">inspirieren</em>.
@@ -238,6 +238,10 @@ const schwellen = schwellenIds.map((id) => byId.get(id)).filter(Boolean);
   .hero-title .verb {
     font-style: italic;
     font-weight: 400;
+  }
+
+  .hero-title .verb-call {
+    color: var(--ink-soft);
   }
 
   .hero-title .verb-touch {
