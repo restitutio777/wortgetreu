@@ -53,11 +53,11 @@
   --spark: var(--saffron);
   --spark-deep: var(--saffron-deep);
 
-  /* Hero-Verb-Töne — pudriger als die System-Akzente,
-     weil Display-Größen mehr Luft vertragen. */
-  --verb-touch: oklch(66% 0.072 250);
-  --verb-grow: oklch(65% 0.085 24);
-  --verb-spark: oklch(72% 0.13 80);
+  /* Hero-Verb-Töne — markanter, mit mehr Pigment.
+     Display-Größen vertragen Sättigung; Hauptsache klar lesbar. */
+  --verb-touch: oklch(54% 0.13 250);
+  --verb-grow: oklch(54% 0.15 22);
+  --verb-spark: oklch(64% 0.17 78);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
