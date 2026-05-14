@@ -8,7 +8,7 @@ export default defineConfig({
   name: 'default',
   title: 'wortgetreu',
 
-  projectId: 'vgln64hw',
+  projectId: 'qm02am13',
   dataset: 'production',
 
   plugins: [

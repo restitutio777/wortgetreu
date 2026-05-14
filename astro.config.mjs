@@ -9,7 +9,7 @@ export default defineConfig({
   },
   integrations: [
     sanity({
-      projectId: 'vgln64hw',
+      projectId: 'qm02am13',
       dataset: 'production',
       apiVersion: '2025-02-01',
       useCdn: true,

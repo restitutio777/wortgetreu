@@ -20,7 +20,7 @@ const TEXTE_DIR = join(ROOT, 'src', 'content', 'texte');
 const IMG_DIR = join(ROOT, 'public', 'gedicht-bilder');
 
 const client = createClient({
-  projectId: 'vgln64hw',
+  projectId: 'qm02am13',
   dataset: 'production',
   apiVersion: '2025-02-01',
   token: process.env.SANITY_AUTH_TOKEN,

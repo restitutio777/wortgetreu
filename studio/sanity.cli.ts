@@ -2,7 +2,7 @@ import { defineCliConfig } from 'sanity/cli';
 
 export default defineCliConfig({
   api: {
-    projectId: 'vgln64hw',
+    projectId: 'qm02am13',
     dataset: 'production',
   },
   studioHost: 'wortgetreu-studio',
