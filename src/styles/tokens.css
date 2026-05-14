@@ -43,11 +43,11 @@
   --blue-soft: oklch(82% 0.035 248);
   --blue-bg: oklch(97.5% 0.018 245);
 
-  /* Terracotta / Ton-Erde — ermutigen, irdene Wärme */
-  --rose: oklch(62% 0.085 38);
-  --rose-deep: oklch(50% 0.105 32);
-  --rose-soft: oklch(80% 0.05 42);
-  --rose-bg: oklch(97.5% 0.022 38);
+  /* Magenta — ermutigen klingt mit dem Logo-"getreu" zusammen */
+  --rose: oklch(56% 0.17 348);
+  --rose-deep: oklch(46% 0.19 346);
+  --rose-soft: oklch(76% 0.08 348);
+  --rose-bg: oklch(97% 0.022 348);
 
   /* Antikgold / blasses Champagner — inspirieren */
   --saffron: oklch(72% 0.075 82);
@@ -92,7 +92,7 @@
   /* Hero-Verb-Töne — leichter, näher an den Karten-Hintergründen,
      wie zwei Schichten derselben Aquarell-Lasur */
   --verb-touch: oklch(68% 0.065 245);
-  --verb-grow: oklch(66% 0.08 38);
+  --verb-grow: oklch(62% 0.13 348);
   --verb-spark: oklch(74% 0.085 80);
 
   /* System-Akzent ist jetzt die warme Antikrose */
