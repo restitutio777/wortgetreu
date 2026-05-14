@@ -33,26 +33,34 @@
      Gelb/Safran = Denken/Geistesblitz (inspirieren)
      Gleich helle Sättigung, balancierte Triade. */
 
-  /* Pudrige Pastell-Triade — weniger gesättigt, Aquarell-Lasur.
-     Verben und Karten lesen sich wie zwei Schichten derselben Familie. */
+  /* Galerie-Palette — entsättigt, modern, wertvoll.
+     Drei pudrige Akzentnoten + ein einziger gesättigter Magenta-Anker im Logo.
+     Alle drei sitzen in derselben Lightness-Familie (60-72%) und
+     niedrigem Chroma (0.06-0.1) — Aquarell auf wertvollem Papier. */
 
-  /* Madonnenblau gedämpft — Hingabe */
-  --blue: oklch(62% 0.075 238);
-  --blue-deep: oklch(50% 0.095 235);
-  --blue-soft: oklch(80% 0.04 240);
-  --blue-bg: oklch(96.5% 0.025 240);
+  /* Dove-Blue — berühren, kontemplativ, sehr leise */
+  --blue: oklch(64% 0.055 230);
+  --blue-deep: oklch(52% 0.075 228);
+  --blue-soft: oklch(80% 0.035 232);
+  --blue-bg: oklch(96.8% 0.018 232);
 
-  /* Koralle pudrig — Wärme des Ermutigens */
-  --rose: oklch(64% 0.085 22);
-  --rose-deep: oklch(52% 0.105 18);
-  --rose-soft: oklch(80% 0.05 25);
-  --rose-bg: oklch(96.5% 0.03 22);
+  /* Pflaume / staubiges Amaranth — ermutigen, Magenta-Familie */
+  --rose: oklch(62% 0.075 340);
+  --rose-deep: oklch(50% 0.095 338);
+  --rose-soft: oklch(80% 0.045 342);
+  --rose-bg: oklch(96.8% 0.022 340);
 
-  /* Safrangold pudrig — Geistesblitz, frisch */
-  --saffron: oklch(72% 0.11 78);
-  --saffron-deep: oklch(60% 0.135 75);
-  --saffron-soft: oklch(84% 0.065 80);
-  --saffron-bg: oklch(96.5% 0.035 78);
+  /* Champagner / blasses Antikgold — inspirieren, leuchtend leicht */
+  --saffron: oklch(72% 0.075 82);
+  --saffron-deep: oklch(60% 0.1 78);
+  --saffron-soft: oklch(84% 0.05 84);
+  --saffron-bg: oklch(96.8% 0.026 82);
+
+  /* Magenta — der gesättigte Anker, nur am Logo */
+  --magenta: oklch(55% 0.16 348);
+  --magenta-deep: oklch(44% 0.18 346);
+  --magenta-soft: oklch(74% 0.085 348);
+  --magenta-bg: oklch(96.8% 0.024 348);
 
   /* Schwellen-Violett — der vierte, sehr seltene Akzent.
      Steht für Geist-berührt-Erde, das Unsagbare, die Mystik.
@@ -82,10 +90,10 @@
   --spark-soft: var(--saffron-soft);
   --spark-bg: var(--saffron-bg);
 
-  /* Hero-Verb-Töne — pudriger als die System-Akzente, aber klar lesbar */
-  --verb-touch: oklch(55% 0.1 235);
-  --verb-grow: oklch(58% 0.12 20);
-  --verb-spark: oklch(65% 0.14 76);
+  /* Hero-Verb-Töne — entsättigt galerie-modern */
+  --verb-touch: oklch(58% 0.08 230);
+  --verb-grow: oklch(58% 0.09 340);
+  --verb-spark: oklch(66% 0.1 80);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);

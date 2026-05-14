@@ -63,37 +63,35 @@ const isActive = (href: string) =>
     line-height: 1;
     display: inline-flex;
     align-items: baseline;
-    gap: 0.45em;
+    gap: 0.4em;
   }
 
   .wordmark::before {
     content: '✻';
-    color: var(--blue-deep);
+    color: var(--ink-soft);
     font-style: normal;
-    font-size: 0.55em;
+    font-size: 0.5em;
     line-height: 1;
     transform: translateY(-3px);
-    opacity: 0.75;
+    opacity: 0.55;
   }
 
   .wordmark-text {
     font-style: italic;
+    font-weight: 600;
   }
 
   .wordmark-warm {
-    color: var(--blue-deep);
+    color: var(--magenta);
     font-style: italic;
+    font-weight: 400;
   }
 
-  .wordmark:hover {
-    color: var(--ink);
-  }
   .wordmark:hover .wordmark-warm {
-    color: var(--blue-deep);
-    opacity: 0.85;
+    color: var(--magenta-deep);
   }
   .wordmark:hover::before {
-    opacity: 1;
+    opacity: 0.85;
   }
 
   .site-nav ul {
