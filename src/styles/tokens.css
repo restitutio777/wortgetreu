@@ -27,25 +27,29 @@
      und ein einziger warmer Lichtpunkt (blasses Gold).
      Weniger Pigment, mehr Atmosphäre. */
 
-  /* Azurit-Blau — Goethes „Blau erscheint, wo Dunkles durchs Helle gesehen wird".
-     Leuchtend, kontemplativ, nicht informativ-kühl. */
-  --blue: oklch(62% 0.095 235);
-  --blue-deep: oklch(48% 0.12 232);
+  /* Steiner-Triade — drei Seelenkräfte als drei Farben.
+     Blau = Fühlen/Hingabe (berühren)
+     Rot/Koralle = Wille/Mut (ermutigen)
+     Gelb/Safran = Denken/Geistesblitz (inspirieren)
+     Gleich helle Sättigung, balancierte Triade. */
+
+  /* Madonnenblau / kontemplatives Blau — Hingabe, Berührtwerden */
+  --blue: oklch(58% 0.105 235);
+  --blue-deep: oklch(45% 0.13 232);
   --blue-soft: oklch(76% 0.055 238);
-  --blue-bg: oklch(96.8% 0.018 238);
+  --blue-bg: oklch(96.5% 0.02 238);
 
-  /* Anthroposophische Liebes-Rose — von Heide nach Pfirsichblüte,
-     warm-rosé, der menschliche Pol */
-  --rose: oklch(64% 0.095 350);
-  --rose-deep: oklch(52% 0.115 348);
-  --rose-soft: oklch(78% 0.055 350);
-  --rose-bg: oklch(96.8% 0.022 350);
+  /* Koralle / warmes Liebrot — Lebenskraft, Mut, Wärme des Ermutigens */
+  --rose: oklch(60% 0.12 22);
+  --rose-deep: oklch(48% 0.145 18);
+  --rose-soft: oklch(76% 0.06 25);
+  --rose-bg: oklch(96.5% 0.024 22);
 
-  /* Honig-Gold — sonnenhaft warm, jenseits von Yellow-Kitsch */
-  --saffron: oklch(68% 0.135 68);
-  --saffron-deep: oklch(56% 0.155 62);
-  --saffron-soft: oklch(82% 0.075 70);
-  --saffron-bg: oklch(96.5% 0.028 72);
+  /* Safrangold / Geistesblitz — der inspirierende Funke */
+  --saffron: oklch(68% 0.14 78);
+  --saffron-deep: oklch(56% 0.16 75);
+  --saffron-soft: oklch(82% 0.075 80);
+  --saffron-bg: oklch(96.5% 0.028 80);
 
   /* Schwellen-Violett — der vierte, sehr seltene Akzent.
      Steht für Geist-berührt-Erde, das Unsagbare, die Mystik.
@@ -75,10 +79,10 @@
   --spark-soft: var(--saffron-soft);
   --spark-bg: var(--saffron-bg);
 
-  /* Hero-Verb-Töne — Display-Text, mit Pigment-Klarheit aber atmosphärisch */
-  --verb-touch: oklch(52% 0.14 232);
-  --verb-grow: oklch(54% 0.135 348);
-  --verb-spark: oklch(60% 0.16 65);
+  /* Hero-Verb-Töne — Steiner-Triade als Display-Akzente */
+  --verb-touch: oklch(50% 0.13 235);
+  --verb-grow: oklch(52% 0.15 18);
+  --verb-spark: oklch(60% 0.16 75);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);
