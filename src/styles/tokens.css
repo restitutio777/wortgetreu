@@ -33,23 +33,26 @@
      Gelb/Safran = Denken/Geistesblitz (inspirieren)
      Gleich helle Sättigung, balancierte Triade. */
 
-  /* Madonnenblau / kontemplatives Blau — Hingabe, Berührtwerden */
-  --blue: oklch(58% 0.105 235);
-  --blue-deep: oklch(45% 0.13 232);
-  --blue-soft: oklch(76% 0.055 238);
-  --blue-bg: oklch(96.5% 0.02 238);
+  /* Pudrige Pastell-Triade — weniger gesättigt, Aquarell-Lasur.
+     Verben und Karten lesen sich wie zwei Schichten derselben Familie. */
 
-  /* Koralle / warmes Liebrot — Lebenskraft, Mut, Wärme des Ermutigens */
-  --rose: oklch(60% 0.12 22);
-  --rose-deep: oklch(48% 0.145 18);
-  --rose-soft: oklch(76% 0.06 25);
-  --rose-bg: oklch(96.5% 0.024 22);
+  /* Madonnenblau gedämpft — Hingabe */
+  --blue: oklch(62% 0.075 238);
+  --blue-deep: oklch(50% 0.095 235);
+  --blue-soft: oklch(80% 0.04 240);
+  --blue-bg: oklch(96.5% 0.025 240);
 
-  /* Safrangold / Geistesblitz — der inspirierende Funke */
-  --saffron: oklch(68% 0.14 78);
-  --saffron-deep: oklch(56% 0.16 75);
-  --saffron-soft: oklch(82% 0.075 80);
-  --saffron-bg: oklch(96.5% 0.028 80);
+  /* Koralle pudrig — Wärme des Ermutigens */
+  --rose: oklch(64% 0.085 22);
+  --rose-deep: oklch(52% 0.105 18);
+  --rose-soft: oklch(80% 0.05 25);
+  --rose-bg: oklch(96.5% 0.03 22);
+
+  /* Safrangold pudrig — Geistesblitz, frisch */
+  --saffron: oklch(72% 0.11 78);
+  --saffron-deep: oklch(60% 0.135 75);
+  --saffron-soft: oklch(84% 0.065 80);
+  --saffron-bg: oklch(96.5% 0.035 78);
 
   /* Schwellen-Violett — der vierte, sehr seltene Akzent.
      Steht für Geist-berührt-Erde, das Unsagbare, die Mystik.
@@ -79,10 +82,10 @@
   --spark-soft: var(--saffron-soft);
   --spark-bg: var(--saffron-bg);
 
-  /* Hero-Verb-Töne — Steiner-Triade als Display-Akzente */
-  --verb-touch: oklch(50% 0.13 235);
-  --verb-grow: oklch(52% 0.15 18);
-  --verb-spark: oklch(60% 0.16 75);
+  /* Hero-Verb-Töne — pudriger als die System-Akzente, aber klar lesbar */
+  --verb-touch: oklch(55% 0.1 235);
+  --verb-grow: oklch(58% 0.12 20);
+  --verb-spark: oklch(65% 0.14 76);
 
   /* System-Akzent ist jetzt die warme Antikrose */
   --accent: var(--rose);

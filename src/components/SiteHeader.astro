@@ -56,39 +56,44 @@ const isActive = (href: string) =>
   .wordmark {
     border: 0;
     font-family: var(--font-serif);
-    font-style: italic;
     font-weight: 400;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    letter-spacing: -0.005em;
+    font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+    letter-spacing: 0;
     color: var(--ink);
     line-height: 1;
     display: inline-flex;
     align-items: baseline;
-    gap: 0.35em;
+    gap: 0.45em;
   }
 
   .wordmark::before {
     content: '✻';
-    color: var(--violet);
+    color: var(--blue-deep);
     font-style: normal;
-    font-size: 0.65em;
+    font-size: 0.55em;
     line-height: 1;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    opacity: 0.75;
+  }
+
+  .wordmark-text {
+    font-style: italic;
   }
 
   .wordmark-warm {
-    color: var(--accent);
-    font-style: inherit;
+    color: var(--blue-deep);
+    font-style: italic;
   }
 
   .wordmark:hover {
     color: var(--ink);
   }
   .wordmark:hover .wordmark-warm {
-    color: var(--accent-deep);
+    color: var(--blue-deep);
+    opacity: 0.85;
   }
   .wordmark:hover::before {
-    color: var(--accent);
+    opacity: 1;
   }
 
   .site-nav ul {
