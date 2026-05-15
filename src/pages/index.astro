@@ -62,7 +62,11 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
           target="_blank"
           rel="noreferrer"
         >
-          <em>Leuchtspuren</em>, tredition 2020 <span aria-hidden="true">↗</span>
+          <svg class="book-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.5C12 4.4 12.9 3.5 14 3.5h6c.5 0 1 .5 1 1v14c0 .5-.5 1-1 1h-6c-1.1 0-2 .9-2 2"/>
+            <path d="M12 5.5C12 4.4 11.1 3.5 10 3.5H4c-.5 0-1 .5-1 1v14c0 .5.5 1 1 1h6c1.1 0 2 .9 2 2"/>
+          </svg>
+          <span><em>Leuchtspuren</em> — mein Buch <span aria-hidden="true">↗</span></span>
         </a>
       </p>
     </div>
@@ -235,7 +239,7 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
   .hero-title .verb {
     font-style: italic;
     font-weight: 400;
-    color: oklch(54% 0.035 240);
+    color: var(--magenta);
   }
 
   .hero-dedication {
@@ -286,7 +290,6 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
   .hero-book {
     margin-top: 0;
     font-family: var(--font-serif);
-    font-style: italic;
     font-size: var(--text-sm);
     color: var(--ink-soft);
     line-height: 1.4;
@@ -295,19 +298,33 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
   .hero-book a {
     border: 0;
     color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
     transition: color var(--transition-fast);
   }
 
+  .hero-book .book-icon {
+    color: var(--magenta);
+    flex-shrink: 0;
+    transform: translateY(0.5px);
+  }
+
   .hero-book a em {
+    font-style: italic;
     color: var(--ink);
   }
 
   .hero-book a:hover {
-    color: var(--accent-deep);
+    color: var(--magenta-deep);
   }
 
   .hero-book a:hover em {
-    color: var(--accent-deep);
+    color: var(--magenta-deep);
+  }
+
+  .hero-book a:hover .book-icon {
+    color: var(--magenta-deep);
   }
 
   /* Services-Band — am Seitenende, ruhig */
