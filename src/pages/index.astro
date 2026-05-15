@@ -40,17 +40,21 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
 >
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-welcome">{welcome}</p>
-
       <h1 class="hero-title">
-        <em class="verb verb-call">{titelEinleitung}</em><br />
-        <em class="verb verb-touch">{verben[0]}</em>,
-        <em class="verb verb-grow">{verben[1]}</em>,<br />
-        <em class="verb verb-spark">{verben[2]}</em>.
+        <span class="verb-call">{titelEinleitung}</span>
+        <em class="verb">{verben[0]}</em>,
+        <em class="verb">{verben[1]}</em>,
+        <em class="verb">{verben[2]}</em>.
       </h1>
 
-      <p class="hero-subtitle" set:html={heroUntertitel} />
+      <p class="hero-dedication">dem aufmerksamen Wort gewidmet</p>
 
+      <div class="hero-mark" aria-hidden="true">✻</div>
+
+      <p class="hero-signature">
+        <span class="sig-name">Katharina Offenborn</span>
+        <span class="sig-meta">Werk seit 1999</span>
+      </p>
 
       <p class="hero-book">
         <a
@@ -58,11 +62,7 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
           target="_blank"
           rel="noreferrer"
         >
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 5.5C12 4.4 12.9 3.5 14 3.5h6c.5 0 1 .5 1 1v14c0 .5-.5 1-1 1h-6c-1.1 0-2 .9-2 2"/>
-            <path d="M12 5.5C12 4.4 11.1 3.5 10 3.5H4c-.5 0-1 .5-1 1v14c0 .5.5 1 1 1h6c1.1 0 2 .9 2 2"/>
-          </svg>
-          <span><em>Leuchtspuren</em> bei tredition <span aria-hidden="true">↗</span></span>
+          <em>Leuchtspuren</em>, tredition 2020 <span aria-hidden="true">↗</span>
         </a>
       </p>
     </div>
@@ -213,62 +213,80 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
     position: relative;
   }
 
-  .hero-welcome {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: var(--text-lg);
-    line-height: 1.4;
-    color: var(--ink-soft);
-    margin-bottom: var(--space-5);
-    text-wrap: balance;
-  }
-
   .hero-title {
     font-family: var(--font-serif);
     font-weight: 400;
-    font-size: var(--text-display);
-    line-height: 1.05;
+    font-size: clamp(2.5rem, 7vw, 4.75rem);
+    line-height: 1.08;
     letter-spacing: var(--tracking-display);
     color: var(--ink);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-5);
     text-wrap: balance;
+    max-width: 18ch;
+    margin-inline: auto;
+  }
+
+  .hero-title .verb-call {
+    color: var(--ink-soft);
+    font-style: normal;
+    font-weight: 400;
   }
 
   .hero-title .verb {
     font-style: italic;
     font-weight: 400;
+    color: oklch(54% 0.035 240);
   }
 
-  .hero-title .verb-call {
+  .hero-dedication {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: 1.4;
+    color: oklch(50% 0.055 55);
+    margin-bottom: var(--space-5);
+    text-wrap: balance;
+  }
+
+  .hero-mark {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    color: var(--ink-faint);
+    line-height: 1;
+    margin-bottom: var(--space-5);
+    user-select: none;
+    letter-spacing: 0;
+  }
+
+  .hero-signature {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+  }
+
+  .hero-signature .sig-name {
+    font-variant-caps: small-caps;
+    font-feature-settings: 'smcp' 1, 'c2sc' 1, 'kern' 1, 'liga' 1;
+    letter-spacing: 0.08em;
+    font-size: var(--text-sm);
+    color: var(--ink);
+  }
+
+  .hero-signature .sig-meta {
+    font-style: italic;
+    font-size: var(--text-sm);
     color: var(--ink-soft);
   }
 
-  .hero-title .verb-touch {
-    color: var(--verb-touch);
-  }
-
-  .hero-title .verb-grow {
-    color: var(--verb-grow);
-  }
-
-  .hero-title .verb-spark {
-    color: var(--verb-spark);
-  }
-
-  .hero-subtitle {
-    font-family: var(--font-serif);
-    color: var(--ink);
-    font-size: var(--text-base);
-    line-height: 1.55;
-    max-width: 32rem;
-    margin-inline: auto;
-    text-wrap: pretty;
-  }
-
-  /* Buch-Mini im Hero — knappe Zeile mit Icon */
   .hero-book {
-    margin-top: var(--space-5);
+    margin-top: 0;
     font-family: var(--font-serif);
+    font-style: italic;
     font-size: var(--text-sm);
     color: var(--ink-soft);
     line-height: 1.4;
@@ -277,27 +295,19 @@ const intro = settings.eingangIntro ?? 'Wo möchtest du beginnen?';
   .hero-book a {
     border: 0;
     color: inherit;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    padding: 0.3em 0.7em;
-    border-radius: 999px;
-    transition: background var(--transition-fast), color var(--transition-fast);
-  }
-
-  .hero-book a svg {
-    color: var(--accent);
-    transform: translateY(0.5px);
+    transition: color var(--transition-fast);
   }
 
   .hero-book a em {
-    font-style: italic;
     color: var(--ink);
   }
 
   .hero-book a:hover {
-    background: var(--accent-bg);
-    color: var(--ink);
+    color: var(--accent-deep);
+  }
+
+  .hero-book a:hover em {
+    color: var(--accent-deep);
   }
 
   /* Services-Band — am Seitenende, ruhig */
