@@ -55,20 +55,27 @@ const bildAlt = entry.bild?.alt ?? entry.title;
       {
         prev && (
           <a href={`/werk/${prev.slug}`}>
-            <span class="sans">Vorheriger Text</span>
+            <span class="nav-label sans">
+              <span class="nav-arrow" aria-hidden="true">←</span> Vorheriger
+            </span>
             <span class="title">{prev.title}</span>
           </a>
         )
       }
     </div>
     <div class="text-nav-werk">
-      <a href="/werk" class="sans">Werk-Übersicht</a>
+      <a href="/werk">
+        <span class="nav-mark" aria-hidden="true">✻</span>
+        <span class="nav-label sans">Zur Übersicht</span>
+      </a>
     </div>
     <div class="text-nav-next">
       {
         next && (
           <a href={`/werk/${next.slug}`}>
-            <span class="sans">Nächster Text</span>
+            <span class="nav-label sans">
+              Nächster <span class="nav-arrow" aria-hidden="true">→</span>
+            </span>
             <span class="title">{next.title}</span>
           </a>
         )
@@ -112,8 +119,8 @@ const bildAlt = entry.bild?.alt ?? entry.title;
   .text-nav {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-5);
-    padding-block: var(--space-6) var(--space-7);
+    gap: var(--space-6);
+    padding-block: var(--space-7) var(--space-9);
     align-items: start;
   }
 
@@ -121,6 +128,7 @@ const bildAlt = entry.bild?.alt ?? entry.title;
     .text-nav {
       grid-template-columns: 1fr auto 1fr;
       align-items: baseline;
+      gap: var(--space-5);
     }
   }
 
@@ -157,6 +165,26 @@ const bildAlt = entry.bild?.alt ?? entry.title;
     align-items: inherit;
   }
 
+  .text-nav .nav-label {
+    color: var(--ink-soft);
+    transition: color var(--transition-fast);
+  }
+
+  .text-nav .nav-arrow {
+    display: inline-block;
+    color: var(--ink-faint);
+    transition: transform var(--transition-base), color var(--transition-fast);
+  }
+
+  .text-nav-prev a:hover .nav-arrow {
+    transform: translateX(-3px);
+    color: var(--magenta);
+  }
+  .text-nav-next a:hover .nav-arrow {
+    transform: translateX(3px);
+    color: var(--magenta);
+  }
+
   .text-nav .title {
     font-family: var(--font-serif);
     font-style: italic;
@@ -166,7 +194,35 @@ const bildAlt = entry.bild?.alt ?? entry.title;
     text-wrap: balance;
   }
 
-  .text-nav a:hover .title {
-    color: var(--accent);
+  .text-nav a:hover .title,
+  .text-nav a:hover .nav-label {
+    color: var(--magenta);
+  }
+
+  .text-nav-werk a {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.55em;
+    padding: 0.55em 1.2em;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .text-nav-werk a:hover {
+    border-color: var(--magenta-soft);
+    background: var(--magenta-bg);
+    color: var(--magenta-deep);
+  }
+
+  .text-nav-werk .nav-mark {
+    color: var(--magenta);
+    font-size: 0.85em;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  .text-nav-werk a:hover .nav-mark {
+    color: var(--magenta-deep);
   }
 </style>
